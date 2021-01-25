@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>British Shorthair</title>
+</head>
+<style>
+    .textColumn{
+        margin-top: 5%
+    }
+    .buttonCheckIn{
+        color: white;
+        background-color: mediumblue;
+        border-style: inherit;
+    }
+    .threeCatsRow{
+        display: flex;
+        flex-direction: row;
+        margin-left: 5%;
+    }
+    .firstRow{
+        width: 90%;
+        margin: 5%;
+        border: 1px solid darkgray;
+        display: flex;
+    }
+    .secondRow{
+        width: 92%;
+        margin: 4%;
+        display: flex;
+        flex-direction: column;
+            }
+    .thirdRow{
+        width: 92%;
+        margin: 4%;
+        display: flex;
+        flex-direction: column;
+    }
+    .smallCatImage1{
+        width: 130px;
+        height: 150px;
+        margin-top: 3%;
+        margin-bottom: 6%;
+    }
+    .smallCatImage2{
+        width: 180px;
+        height: 150px;
+        margin-top: 3%;
+        margin-left: 18%;
+        margin-bottom: 6%;
+    }
+    .smallCatImage3{
+        width: 110px;
+        height: 150px;
+        margin-top: 3%;
+        margin-left: 18%;
+        margin-bottom: 6%;
+    }
+    .tableInformation{
+        border: 1px solid darkgray;
+        width: 100%;
+    }
+
+</style>
+<h1></h1>
+    <body>
+    <div class="col-lg-12 firstRow" >
+    <div class="col-lg-6 floatingObject">
+        <div class="col-md-6"> <img
+                src="https://mybritishshorthair.com/wp-content/uploads/2020/04/Grey_British_Shorthair_with_yellow_eyes-1024x861.jpg"
+                alt="British shorthair main" style="width: 550px; height: 550px; margin: 5%">
+        </div>
+        <div class="col-md-6 threeCatsRow"> <img
+                src="https://i.pinimg.com/564x/ab/b6/38/abb638f484c42120705d98a6e24541b4.jpg"
+                alt="British shorthair sub 1"
+                class="smallCatImage1"
+        ><img
+                src="https://tescobank.azureedge.net/assets/britishshorthaircatmain-l/1/BritishShorthairCatMain%20L.jpg"
+                alt="British shorthair sub 2"
+                class="smallCatImage2"
+        ><img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLmu79tPCNlDDHC2dhbUzJWhBzGbVwvZn9pA&usqp=CAU"
+                alt="British shorthair sub 3"
+                class="smallCatImage3"
+        ></div>
+    </div>
+        <div class="col-md-6 textColumn">
+            <h1>British Shorthair</h1>
+            <br/>
+            <p>The British Shorthair is the pedigreed version of the traditional British domestic cat,
+                with a distinctively stocky body, dense coat, and broad face.
+                <br>
+                The most familiar color variant is the "British Blue", a solid grey-blue coat,
+                orange eyes, and a medium-sized tail. The breed has also been developed in a wide range
+                of other colours and patterns, including tabby and colorpoint.
+                <br>
+                It is one of the most ancient cat breeds known. In modern times, it remains the most popular
+                pedigreed breed in its native country, as registered by the UK's Governing Council of the
+                Cat Fancy (GCCF).
+                <br>A quarter of all kittens registered with the GCCF each year are British
+                Shorthairs, making the British the most popular pedigree cat in the UK.</p>
+            <button onclick="alert('Hey! check my cat')" class="buttonCheckIn">Check in</button>
+        </div>
+    </div>
+
+    <div class="col-lg-12 secondRow"><div class="col-lg-12"><h2>Additional Information</h2></div>
+        <div class="col-lg-12 tableInformation">
+            <table class="table">
+                <thead>
+                <tr style="display:flex; width:100%; border-top: 1px solid darkgray; margin-top: 2%">
+                    <th scope="row"; style="width: 200px; border-top: none; border-bottom: none">Average Rating</th>
+                    <td style="margin-left: 50%; border-top: none; border-bottom: none"><image style="width:100px"; src="data:image/png;base64,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"/></td>
+                </tr>
+                <tr style="display:flex; width:100%; border-top: 1px solid darkgray; margin-top: 2%">
+                    <th scope="row"; style="width: 200px; border-top: none; border-bottom: none">Another Statistic</th>
+                    <td scope="row"; style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none">78/100</td>
+
+                </tr>
+                <tr style="display:flex; width:100%; border-top: 1px solid darkgray; margin-top: 2%">
+                    <th scope="row"; style="width: 200px; border-top: none; border-bottom: none">Yet Another Statistic</th>
+                    <td scope="row"; style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none">Something</td>
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12 thirdRow"><div class="col-lg-12"><h2>Recent Checkings</h2></div>
+    <div class="col-lg-12 tableInformation">
+        <table class="table">
+            <thead>
+            <tr style="display:flex; width:100%; margin-top: 2%">
+                <th scope="row"; style="width: 200px; border-top: none; border-bottom: none"><h3 font-size: medium>Joe Bloggs</h3></th>
+                <td style="margin-left: 0%;border-top: none; border-bottom: none"><image style="width:100px"; src="data:image/png;base64,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"/></td>
+            </tr>
+
+            </thead>
+            <tbody>
+            <td style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none">British Shorthairs are good, calm pets for families once they move past their kitten stage.<br><br><small>30th December, 2019</small></td>
+            </tbody>
+        </table>
+    </div>
+        <br>
+        <div class="col-lg-12 tableInformation">
+        <table class="table">
+            <thead>
+            <tr style="display:flex; width:100%; margin-top: 2%">
+            <th scope="row"; style="width: 200px; border-top: none; border-bottom: none"><h3 font-size: medium>Joe Bloggs</h3></th>
+            <td style="margin-left: 0%;border-top: none; border-bottom: none"><image style="width:100px"; src="data:image/png;base64,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"/></td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <td style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none">The British Shorthair is mellow and easygoing, making him an excellent family companion. He enjoys affection, but he's not a <i>"me, me, me"</i> type of cat. Expect him to follow you around the house during the day, settling nearby wherever you stop.<br><br><small>21st February, 2020</small></td>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
