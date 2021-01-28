@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>Week 2, session 1, Exercise 1</title>
+
+        <script>
+            function changeBodyBg(color){
+                document.body.style.background = color;
+            }
+        </script>
+
+        <style>
+            #starWarsTShirt, #galacticaTShirt, #bigBangTheoryTShirt, #superMarioTShirt,
+            #assassinsCreedJumper, #nasaJumper, #einsteinJumper, #nikolaTeslaJumper, #supermanTrousers,
+            #greenLanternTrousers, #flashTrousers, #theWitcherTrousers
+            {
+                width: 100px;
+                height: 100px;
+            }
+            #bigPicture {
+                background-color: red;
+                width: 500px;
+                height: 500px;
+                alignment: center;
+                visibility: hidden;
+                margin: auto;
+                float: right;
+                z-index: 90;
+                position: fixed;
+                bottom: 2rem;
+                right: 9rem;
+            }
+            nav {
+                display: block;
+                text-align: center;
+            }
+            nav ul {
+                margin: 0;
+                padding:0;
+                list-style: none;
+            }
+            .nav a {
+                display:block;
+                background: #111;
+                color: #fff;
+                text-decoration: none;
+                padding: 0.8em 1.8em;
+                text-transform: uppercase;
+                font-size: 80%;
+                letter-spacing: 2px;
+                text-shadow: 0 -1px 0 #000;
+                position: relative;
+            }
+            .nav{
+                vertical-align: top;
+                display: inline-block;
+                box-shadow:
+                        1px -1px -1px 1px #000,
+                        -1px 1px -1px 1px #fff,
+                        0 0 6px 3px #fff;
+                border-radius:6px;
+            }
+            .nav li {
+                position: relative;
+            }
+            .nav > li {
+                float: left;
+                border-bottom: 4px #aaa solid;
+                margin-right: 1px;
+            }
+            .nav > li > a {
+                margin-bottom: 1px;
+                box-shadow: inset 0 2em .33em -0.5em #555;
+            }
+            .nav > li:hover,
+            .nav > li:hover > a {
+                border-bottom-color: orange;
+            }
+            .nav li:hover > a {
+                color:orange;
+            }
+            .nav > li:first-child {
+                border-radius: 4px 0 0 4px;
+            }
+            .nav > li:first-child > a {
+                border-radius: 4px 0 0 0;
+            }
+            .nav > li:last-child {
+                border-radius: 0 0 4px 0;
+                margin-right: 0;
+            }
+            .nav > li:last-child > a {
+                border-radius: 0 4px 0 0;
+            }
+            .nav li li a {
+                margin-top: 1px;
+            }
+            .nav li a:first-child:nth-last-child(2):before {
+                content: "";
+                position: absolute;
+                height: 0;
+                width: 0;
+                border: 5px solid transparent;
+                top: 50% ;
+                right:5px;
+            }
+            .nav ul {
+                position: absolute;
+                white-space: nowrap;
+                border-bottom: 5px solid  orange;
+                z-index: 1;
+                left: -99999em;
+            }
+            .nav > li:hover > ul {
+                left: auto;
+                margin-top: 5px;
+                min-width: 100%;
+            }
+            .nav > li li:hover > ul {
+                left: 100%;
+                margin-left: 1px;
+                top: -1px;
+            }
+            .nav > li > a:first-child:nth-last-child(2):before {
+                border-top-color: #aaa;
+            }
+            .nav > li:hover > a:first-child:nth-last-child(2):before {
+                border: 5px solid transparent;
+                border-bottom-color: orange;
+                margin-top:-5px
+            }
+            .nav li li > a:first-child:nth-last-child(2):before {
+                border-left-color: #aaa;
+                margin-top: -5px
+            }
+            .nav li li:hover > a:first-child:nth-last-child(2):before {
+                border: 5px solid transparent;
+                border-right-color: orange;
+                right: 10px;
+            }
+        </style>
+
+        <nav id="topPage">
+            <ul class="nav">
+                <li><a href="#section1">T-Shirts</a>
+                    <ul>
+                        <li><a href="#starWarsTShirt">Star Wars</a>
+                            <ul>
+                                <li><a href="#starWarsTShirtS">Small size</a></li>
+                                <li><a href="#starWarsTShirtM">Medium size</a></li>
+                                <li><a href="#starWarsTShirtL">Large size</a></li>
+                                <li><a href="#starWarsTShirtXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#galacticaTShirt">Galactica</a>
+                            <ul>
+                                <li><a href="#galacticaTShirtS">Small size</a></li>
+                                <li><a href="#galacticaTShirtM">Medium size</a></li>
+                                <li><a href="#galacticaTShirtL">Large size</a></li>
+                                <li><a href="#galacticaTShirtXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#bigBangTheoryTShirt">The Big Bang Theory</a>
+                            <ul>
+                                <li><a href="#bigBangTheoryTShirtS">Small size</a></li>
+                                <li><a href="#bigBangTheoryTShirtM">Medium size</a></li>
+                                <li><a href="#bigBangTheoryTShirtL">Large size</a></li>
+                                <li><a href="#bigBangTheoryTShirtXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#superMarioTShirt">Super Mario</a>
+                            <ul>
+                                <li><a href="#superMarioTShirtS">Small size</a></li>
+                                <li><a href="#superMarioTShirtM">Medium size</a></li>
+                                <li><a href="#superMarioTShirtL">Large size</a></li>
+                                <li><a href="#superMarioTShirtXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+                <li><a href="#section2">Jumpers</a>
+                    <ul>
+                        <li><a href="#assassinsCreedJumper">Assassin's Creed</a>
+                            <ul>
+                                <li><a href="#assassinsCreedJumperS">Small size</a></li>
+                                <li><a href="#assassinsCreedJumperM">Medium size</a></li>
+                                <li><a href="#assassinsCreedJumperL">Large size</a></li>
+                                <li><a href="#assassinsCreedJumperXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#nasaJumper">NASA</a>
+                            <ul>
+                                <li><a href="#nasaJumperS">Small size</a></li>
+                                <li><a href="#nasaJumperM">Medium size</a></li>
+                                <li><a href="#nasaJumperL">Large size</a></li>
+                                <li><a href="#nasaJumperXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#einsteinJumper">Einstein</a>
+                            <ul>
+                                <li><a href="#einsteinJumperS">Small size</a></li>
+                                <li><a href="#einsteinJumperM">Medium size</a></li>
+                                <li><a href="#einsteinJumperL">Large size</a></li>
+                                <li><a href="#einsteinJumperXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#nikolaTeslaJumper">Nikola Tesla</a>
+                            <ul>
+                                <li><a href="#nikolaTeslaJumperS">Small size</a></li>
+                                <li><a href="#nikolaTeslaJumperM">Medium size</a></li>
+                                <li><a href="#nikolaTeslaJumperL">Large size</a></li>
+                                <li><a href="#nikolaTeslaJumperXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+                <li><a href="#section3">Trousers</a>
+                    <ul>
+                        <li><a href="#supermanTrousers">Superman</a>
+                            <ul>
+                                <li><a href="#supermanTrousersS">Small size</a></li>
+                                <li><a href="#supermanTrousersM">Medium size</a></li>
+                                <li><a href="#supermanTrousersL">Large size</a></li>
+                                <li><a href="#supermanTrousersXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#greenLanternTrousers">Green Lantern</a>
+                            <ul>
+                                <li><a href="#greenLanternTrousersS">Small size</a></li>
+                                <li><a href="#greenLanternTrousersM">Medium size</a></li>
+                                <li><a href="#greenLanternTrousersL">Large size</a></li>
+                                <li><a href="#greenLanternTrousersXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#flashTrousers">Flash</a>
+                            <ul>
+                                <li><a href="#flashTrousersS">Small size</a></li>
+                                <li><a href="#flashTrousersM">Medium size</a></li>
+                                <li><a href="#flashTrousersL">Large size</a></li>
+                                <li><a href="#flashTrousersXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#theWitcherTrousers">The Witcher</a>
+                            <ul>
+                                <li><a href="#theWitcherTrousersS">Small size</a></li>
+                                <li><a href="#theWitcherTrousersM">Medium size</a></li>
+                                <li><a href="#theWitcherTrousersL">Large size</a></li>
+                                <li><a href="#theWitcherTrousersXL">Extra large size</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </head>
+
+    <body>
+
+<input type="text" id="colourInputText">
+<input type="button" id="colourButton" value="Click to change background colour" onclick="changeColour()">
+
+<script>
+    function changeColour(){
+        let color=document.getElementById('colourInputText').value;
+        document.body.style.backgroundColor=color;
+
+    }
+</script>
+
+    <div class="paragraph">
+        <h1>
+            <span id="section1">T-shirts</span>
+        </h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod erat vehicula, cursus urna accumsan, feugiat nunc.
+                <br>Ut ornare enim eget condimentum sodales. Mauris vitae condimentum magna. Nulla ut turpis egestas, lacinia purus ut, congue ligula.
+                <br>Nulla a ullamcorper quam. Aenean iaculis tellus vitae consectetur iaculis. Mauris blandit facilisis odio, vitae molestie mauris
+                <br>posuere gravida. Donec tincidunt lacus sit amet lorem posuere dapibus. Fusce eu aliquet mi, in condimentum massa.
+                <br>Nullam vel elit rhoncus, dictum felis sit amet, vehicula urna.</p>
+
+        <table>
+            <tr>
+                <th>
+                    <img id="starWarsTShirt" src="https://www.emp.co.uk/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw510983c8/images/4/7/8/5/478568a.jpg?sw=1000&sh=800&sm=fit&sfrm=png"></img>
+                </th>
+                <th>Star Wars</th>
+            </tr>
+            <tr>
+                <td id="starWarsTShirtS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="starWarsTShirtM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="starWarsTShirtL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="starWarsTShirtXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th><img id="galacticaTShirt" src="https://images-na.ssl-images-amazon.com/images/I/61xo0fP00nL._AC_UL1001_.jpg"></img>
+                </th>
+                <th>Galactica</th>
+            </tr>
+            <tr>
+                <td id="galacticaTShirtS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="galacticaTShirtM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="galacticaTShirtL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="galacticaTShirtXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>
+                    <img id="bigBangTheoryTShirt" src="https://images-na.ssl-images-amazon.com/images/I/61ZmRxx63jL._AC_UX385_.jpg"></img>
+
+                </th>
+                <th>The Big Bang Theory</th>
+            </tr>
+            <tr>
+                <td id="bigBangTheoryTShirtS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="bigBangTheoryTShirtM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="bigBangTheoryTShirtL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="bigBangTheoryTShirtXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>
+                    <img id="superMarioTShirt" src="https://s4.thcdn.com//productimg/1600/1600/11731205-1104619623563678.jpg"></img>
+
+                </th>
+                <th>Super Mario</th>
+            </tr>
+            <tr>
+                <td id="superMarioTShirtS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="superMarioTShirtM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="superMarioTShirtL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="superMarioTShirtXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+
+        <br>
+        <br>
+
+        <h1>
+            <span id="section2">Jumpers</span>
+        </h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod erat vehicula, cursus urna accumsan, feugiat nunc.
+                <br>Ut ornare enim eget condimentum sodales. Mauris vitae condimentum magna. Nulla ut turpis egestas, lacinia purus ut, congue ligula.
+                <br>Nulla a ullamcorper quam. Aenean iaculis tellus vitae consectetur iaculis. Mauris blandit facilisis odio, vitae molestie mauris
+                <br>posuere gravida. Donec tincidunt lacus sit amet lorem posuere dapibus. Fusce eu aliquet mi, in condimentum massa.
+                <br>Nullam vel elit rhoncus, dictum felis sit amet, vehicula urna.</p>
+        <table>
+            <tr>
+                <th>
+                    <img id="assassinsCreedJumper" src="https://canary.contestimg.wish.com/api/webimage/5b9aa558b9f97b784eb7653d-large.jpg?cache_buster=da057a247c05a4f96f746a2281aa77ff"></img>
+                </th>
+                <th>Assassin's Creed</th>
+            </tr>
+            <tr>
+                <td id="assassinsCreedJumperS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="assassinsCreedJumperM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="assassinsCreedJumperL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="assassinsCreedJumperXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th><img id="nasaJumper" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc33aRCy-eCUbS3vk0oAjuwENE4-lKlBjl4A&usqp=CAU"></img>
+                </th>
+                <th>NASA</th>
+            </tr>
+            <tr>
+                <td id="nasaJumperS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="nasaJumperM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="nasaJumperL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="nasaJumperXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>
+                    <img id="einsteinJumper" src="https://images-na.ssl-images-amazon.com/images/I/71iPCirgtjL._AC_UL1500_.jpg"></img>
+
+                </th>
+                <th>Einstein</th>
+            </tr>
+            <tr>
+                <td id="einsteinJumperS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="einsteinJumperM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="einsteinJumperL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="einsteinJumperXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>
+                    <img id="nikolaTeslaJumper" src="https://res.cloudinary.com/teepublic/image/private/s--zK-MpfgN--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_456/c_crop,g_north_west,h_620,w_465,x_-5,y_0/g_north_west,u_upload:v1446840652:production:blanks:ymwlojdlb9pdlxgcmck4,x_-396,y_-276/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1574145758/production/designs/6789896_1.jpg"></img>
+
+                </th>
+                <th>Nikola Tesla</th>
+            </tr>
+            <tr>
+                <td id="nikolaTeslaJumperS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="nikolaTeslaJumperM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="nikolaTeslaJumperL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="nikolaTeslaJumperXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+
+        <br>
+        <br>
+
+        <h1>
+            <span id="section3">Trousers</span>
+        </h1>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod erat vehicula, cursus urna accumsan, feugiat nunc.
+                <br>Ut ornare enim eget condimentum sodales. Mauris vitae condimentum magna. Nulla ut turpis egestas, lacinia purus ut, congue ligula.
+                <br>Nulla a ullamcorper quam. Aenean iaculis tellus vitae consectetur iaculis. Mauris blandit facilisis odio, vitae molestie mauris
+                <br>posuere gravida. Donec tincidunt lacus sit amet lorem posuere dapibus. Fusce eu aliquet mi, in condimentum massa.
+                <br>Nullam vel elit rhoncus, dictum felis sit amet, vehicula urna.</p>
+        <table>
+            <tr>
+                <th>
+                    <img id="supermanTrousers" src="https://canary.contestimg.wish.com/api/webimage/5d63c200c70c3427b422b67b-large.jpg?cache_buster=fcbff50ea08be2dcd2edfda50b546645"></img>
+                </th>
+                <th>Superman</th>
+            </tr>
+            <tr>
+                <td id="supermanTrousersS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="supermanTrousersM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="supermanTrousersL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="supermanTrousersXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th><img id="greenLanternTrousers" src="https://i.pinimg.com/originals/64/c1/2f/64c12fc1920d4ce83d0e3900c42fa48f.jpg"></img>
+                </th>
+                <th>Green Lantern</th>
+            </tr>
+            <tr>
+                <td id="greenLanternTrousersS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="greenLanternTrousersM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="greenLanternTrousersL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="greenLanternTrousersXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>
+                    <img id="flashTrousers" src="https://i.pinimg.com/originals/55/6d/ec/556dec59c89ba2dddb04511ba75e86a4.jpg"></img>
+
+                </th>
+                <th>Flash</th>
+            </tr>
+            <tr>
+                <td id="flashTrousersS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="flashTrousersM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="flashTrousersL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="flashTrousersXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>
+                    <img id="theWitcherTrousers" src="https://canary.contestimg.wish.com/api/webimage/5c092ef6711af424242d32b1-large.jpg?cache_buster=896d4383e3d074c1a03de5d76463aaf0"></img>
+
+                </th>
+                <th>The Witcher</th>
+            </tr>
+            <tr>
+                <td id="theWitcherTrousersS">Size S (Small)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="theWitcherTrousersM">Size M (Medium)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="theWitcherTrousersL">Size L (Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+            <tr>
+                <td id="theWitcherTrousersXL">Size XL (Extra Large)</td>
+                <td>₿ 20,95</td>
+            </tr>
+        </table>
+
+        <br>
+        <br>
+
+    </div>
+    <div class="bottomButton">
+
+        <ul id="topPage" style>
+            <li>
+                <a href="#topPage"><span>Back to the top</span></a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="bigPicture">
+        <img id="main" style="alignment: center display: block" src="">
+    </div>
+
+    </body>
+
+</html>
+
+    <script>
+        document.getElementById('starWarsTShirt').onclick=function(e){
+            document.getElementById("main").src = "https://www.emp.co.uk/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw510983c8/images/4/7/8/5/478568a.jpg?sw=1000&sh=800&sm=fit&sfrm=png";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('galacticaTShirt').onclick=function(e){
+            document.getElementById("main").src = "https://images-na.ssl-images-amazon.com/images/I/61xo0fP00nL._AC_UL1001_.jpg";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('bigBangTheoryTShirt').onclick=function(e){
+            document.getElementById("main").src = "https://images-na.ssl-images-amazon.com/images/I/61ZmRxx63jL._AC_UX385_.jpg";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('superMarioTShirt').onclick=function(e){
+            document.getElementById("main").src = "https://s4.thcdn.com//productimg/1600/1600/11731205-1104619623563678.jpg";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('assassinsCreedJumper').onclick=function(e){
+            document.getElementById("main").src = "https://canary.contestimg.wish.com/api/webimage/5b9aa558b9f97b784eb7653d-large.jpg?cache_buster=da057a247c05a4f96f746a2281aa77ff";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('nasaJumper').onclick=function(e){
+            document.getElementById("main").src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc33aRCy-eCUbS3vk0oAjuwENE4-lKlBjl4A&usqp=CAU";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('einsteinJumper').onclick=function(e){
+            document.getElementById("main").src = "https://images-na.ssl-images-amazon.com/images/I/71iPCirgtjL._AC_UL1500_.jpg";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('nikolaTeslaJumper').onclick=function(e){
+            document.getElementById("main").src = "https://res.cloudinary.com/teepublic/image/private/s--zK-MpfgN--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_456/c_crop,g_north_west,h_620,w_465,x_-5,y_0/g_north_west,u_upload:v1446840652:production:blanks:ymwlojdlb9pdlxgcmck4,x_-396,y_-276/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1574145758/production/designs/6789896_1.jpg";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('supermanTrousers').onclick=function(e){
+            document.getElementById("main").src = "https://canary.contestimg.wish.com/api/webimage/5d63c200c70c3427b422b67b-large.jpg?cache_buster=fcbff50ea08be2dcd2edfda50b546645";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('greenLanternTrousers').onclick=function(e){
+            document.getElementById("main").src = "https://i.pinimg.com/originals/64/c1/2f/64c12fc1920d4ce83d0e3900c42fa48f.jpg";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('flashTrousers').onclick=function(e){
+            document.getElementById("main").src = "https://i.pinimg.com/originals/55/6d/ec/556dec59c89ba2dddb04511ba75e86a4.jpg";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+        document.getElementById('theWitcherTrousers').onclick=function(e){
+            document.getElementById("main").src = "https://canary.contestimg.wish.com/api/webimage/5c092ef6711af424242d32b1-large.jpg?cache_buster=896d4383e3d074c1a03de5d76463aaf0";
+            document.getElementById("main").style.width= "500px";
+            document.getElementById("main").style.height = "500px";
+            document.getElementById("main").style.visibility="visible";
+        }
+
+
+        document.getElementById('bigPicture').onclick=function(e) {
+            if (document.getElementById("main").style.visibility = "visible"){
+                document.getElementById("main").style.visibility= "hidden";
+            }
+        }
+    </script>
+
