@@ -2,10 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Get a joke everyday</title>
+    <title>Title</title>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>axios
+        .get('https://api.chucknorris.io/jokes/random')
+        .then(addDataToDOM)
+        .catch(err => console.log(err))
+
+    function addDataToDOM(resp) {
+        $('#data').text(resp.data.value)
+    }
+    </script>
 </head>
 <body>
+<div id="data"></div>
 
 </body>
 </html>
