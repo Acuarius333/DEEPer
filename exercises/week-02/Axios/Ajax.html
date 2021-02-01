@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+<script>
+    $.ajax({
+        url: "http://localhost:8080/checkins",
+        dataType: 'json',
+        success: function (data) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                console.log(data[i])
+                var dataId = data[i].id
+                var dataName = data[i].name
+                var dataReview = data[i].review
+                var dataRating = data[i].rating
+                var dataDateTime = data[i].dateTime
+                $("#id").text(dataId)
+                $("#name").text(dataName)
+                $("#review").text(dataReview)
+                $("#rating").text(dataRating)
+                $("#dateTime").text(dataDateTime)
+            }
+        }
+    });
+</script>
+
+<div id="data">
+    <p>ID: </p> <p id="id"></p>
+    <p>Name: </p> <p id="name"></p>
+    <p>Review: </p> <p id="review"></p>
+    <p>Rating: </p> <p id="rating"></p>
+    <p>Date: </p> <p id="dateTime"></p>
+</div>
+
+</body>
+</html>
+
