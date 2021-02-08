@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <title>British Shorthair</title>
     <style>
         .firstRow{
@@ -45,7 +45,11 @@
         .starImg {
             width: 100px;
         }
+        #charactersRemaining {
+            opacity: 70%;
+        }
     </style>
+
     <script>
         var ratingFormulaValue = 0;
         $.ajax({
@@ -182,7 +186,42 @@
             else {
                 $('#averageRatingStarPicture').html('<img class="starImg" src="https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png">');}
             }
+
     </script>
+
+    <?php
+    class checkIn {
+        public $nameCheckIn;
+        public $ratingCheckIn;
+        public $reviewCheckIn;
+        public $timestampCheckIn;
+    }
+    if (!empty($_POST)) {
+        $checkIn = new checkIn();
+        $checkIn->nameCheckIn = $_POST ['nameCheckIn'];
+        $checkIn->ratingCheckIn = $_POST ['ratingCheckIn'];
+        $checkIn->reviewCheckIn = $_POST ['reviewCheckIn'];
+        $checkIn->timestampCheckIn = date('d-M-Y h:i', time());
+
+        $serialisedCheckIn = serialize($checkIn);
+        file_put_contents('check-ins.txt', $serialisedCheckIn);
+
+        //formula para extraer datos deserializados y poner en tabla
+        $checkInFromFile = file_get_contents('check-ins.txt');
+        $unserialisedCheckIn = unserialize($checkInFromFile);
+    }
+
+    //poner un foreach para scar datos deserializados y poner en la tabla
+
+
+        //echo $checkIn->nameCheckIn;
+
+
+
+    //eliminar archivo tras extraer datos
+    //unlink('check-ins.txt');
+    ?>
+
 </head>
 <body>
 <div class="container firstRow">
@@ -236,10 +275,144 @@
                 Cat Fancy (GCCF).
                 <br>A quarter of all kittens registered with the GCCF each year are British
                 Shorthairs, making the British the most popular pedigree cat in the UK.</p>
-            <button onclick="alert('Hey! check my cat')" class="buttonCheckIn">Check in</button>
+
+
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Check in</button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New review</h5>
+                        </div>
+                        <form id="myForm" action="" method="post">
+                            <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label for="nameCheckIn" class="col-form-label">Name:</label>
+                                        <input type="text" name="nameCheckIn" id="nameCheckIn" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ratingCheckIn" class="col-form-label">Rate:</label>
+                                        <input type="number" min="1" max="5" class="form-control" name="ratingCheckIn" id="ratingCheckIn" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reviewCheckIn" class="col-form-label">Review:</label>
+                                        <textarea class="form-control" name="reviewCheckIn" id="reviewCheckIn" minlength="100" maxlength="2500" required></textarea>
+                                            <div id="charactersRemaining"><span id="chars">2500</span> characters remaining</div>
+                                        <script>
+                                            var maxLength = 2500;
+                                            $('textarea').keyup(function() {
+                                                var length = $(this).val().length;
+                                                var length = maxLength-length;
+                                                $('#chars').text(length);
+                                            });
+                                        </script>
+                                    </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button id="submitButton" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+                                    <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="alert alert-success alert-dismissible">
+                                                <a  class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                                                <strong>Success!</strong> Your review was updated.
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+
+                $("#closeButton").on("click", function () {
+                    //Close Modal
+                    $(".modal").modal("hide");
+                    //Get Values
+                    var val1 = $("#nameCheckIn").val();
+                    var val2 = $("#ratingCheckIn").val();
+                    var val3 = $("#reviewCheckIn").val();
+                    //Reset Values
+                    document.getElementById("myForm").reset();
+
+                });
+                document.addEventListener("click", function (evt) {
+                    var flyoutElement = document.getElementById("exampleModal"),
+                        targetElement = evt.target;  // clicked element
+                    do {
+                        if (targetElement == flyoutElement) {
+                            // This is a click inside. Do nothing, just return.
+                            return;
+                        }
+                        // Go up the DOM
+                        targetElement = targetElement.parentNode;
+                    } while (targetElement);
+                    //Get Values
+                    var val1 = $("#nameCheckIn").val();
+                    var val2 = $("#ratingCheckIn").val();
+                    var val3 = $("#reviewCheckIn").val();
+                    //Reset Values
+                    document.getElementById("myForm").reset();
+
+                });
+
+            </script>
+
+            <!--<button id='openform' class="btn btn-primary" style="margin-left: 17px" onClick="showIt1();">Check in</button>
+
+            <br>
+            <br>
+
+            <div id="layer" style= visibility:hidden; padding:0%; margin:0; background:#ececec; border: 1px solid;">
+
+                <form onsubmit="hideIt1();top.location.reload();" action="" method="post">
+
+                    <label for="nameCheckIn">Name:</label>
+                    <input type="text" name="nameCheckIn" id="nameCheckIn">
+                    <br>
+                    <label for="ratingCheckIn">Rating:</label>
+                    <input type="text" name="ratingCheckIn" id="ratingCheckIn">
+                    <br>
+                    <label for="reviewCheckIn">Review:</label>
+                    <input type="text" name="reviewCheckIn" id="reviewCheckIn">
+                    <br>
+                    <label for="timestampCheckIn">Time stamp:</label>
+                    <input type="text" name="timestampCheckIn" id="timestampCheckIn">
+                    <br>
+                    <br>
+                    <div class="container">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="alert alert-success alert-dismissible">
+                                    <a  class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                                    <strong>Success!</strong> Your review was updated.
+                                </div>
+                            </div>
+                        </div>
+                        <button id="form" class="btn btn-primary" style="margin-left: 17px" onClick="hideIt1();">Close without completing</button>
+                    </div>
+                    <br>
+                    <br>
+                    <button id="btnSubmit" onclick="alert('Review updated successfully!')" class="btn btn-primary">Submit</button>
+
+
+
+                </form>
+
+            </div>-->
+            <!--<button onclick="alert('Hey! check my cat')" class="buttonCheckIn">Check in</button>-->
         </div>
     </div>
 </div>
+
+
 <div class="secondRow">
     <div style="margin-left: 8%; margin-top: -7%"><h2>Additional Information</h2></div>
     <div class="tableInformation">
@@ -340,6 +513,26 @@
         </table>
     </div>
     <br>
+
+    <div id="newReviewTable" class="tableInformation" style="margin-bottom: 2%">
+        <table class="table">
+            <thead>
+            <tr style="display:flex; width:100%; margin-top: 2%">
+                <th scope="row"; style="width: 600px; border-top: none; border-bottom: none"><h3 font-size: medium id="name5"><?php echo $unserialisedCheckIn->nameCheckIn ?></h3></th>
+                <td style="margin-left: 0%;border-top: none; border-bottom: none" id="rating5"><?php echo $unserialisedCheckIn->ratingCheckIn ?></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none" id="review5"><?php echo $unserialisedCheckIn->reviewCheckIn ?></td>
+            </tr>
+            <tr>
+                <td style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none" id="dateTime5"><?php echo $checkIn->timestampCheckIn ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
     <div id="bigPicture">
         <img id="mainPicture" style="alignment: center; display: block" src="">
     </div>
@@ -378,5 +571,9 @@
             }
         }
     </script>
+
 </body>
 </html>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>

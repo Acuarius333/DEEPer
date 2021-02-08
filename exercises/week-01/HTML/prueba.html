@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    function hideIt1() {
+
+        if(document.getElementById) { document.getElementById('layer2').style.visibility='hidden';}
+
+        if(document.layers) {document.layers['layer1'].visibility='hide';} }
+
+    function showIt1() {
+
+        if(document.getElementById) {document.getElementById('layer2').style.visibility='visible';}
+
+        if(document.layers) {document.layers['layer1'].visibility='show';} }
+
+
+
+</script>
+
+<!------Show and hide div --->
+
+<button style='top:0;' id='openform' onClick="showIt1();">Click and open form</button><br>
+
+
+<div id="layer2" style="position:absolute; left:40; top:40; width:70%; visibility:hidden; padding:0%; margin:0; background:#ececec; border: 1px solid;">
+
+
+    <form onsubmit="hideIt1();top.location.reload();" action='popup.php' method='post'>
+
+        <input type="text" name='somename'   id="msgcommentlist" >
+
+        <input type='submit' name="submit" id="subcomment"  ><br>
+
+        <button id="form" onClick="hideIt1();">Close without completing</button>
+
+    </form>
+
+
+
+</div>
+
+</body>
+</html>
