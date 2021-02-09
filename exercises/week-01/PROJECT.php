@@ -50,7 +50,82 @@
         }
     </style>
 
+    <?php
+
+    class checkIn {
+        public $nameCheckIn;
+        public $ratingCheckIn;
+        public $reviewCheckIn;
+        public $timestampCheckIn;
+    }
+    if (!empty($_POST)) {
+        $checkIn = new checkIn();
+        $checkIn->nameCheckIn = $_POST ['nameCheckIn'];
+        $checkIn->ratingCheckIn = $_POST ['ratingCheckIn'];
+        $checkIn->reviewCheckIn = $_POST ['reviewCheckIn'];
+        $checkIn->timestampCheckIn = date('d-M-Y h:i', time());
+
+        $serialisedCheckIn = serialize($checkIn);
+        file_put_contents('check-ins.txt', $serialisedCheckIn);
+
+        //formula para extraer datos deserializados y poner en tabla
+        $checkInFromFile = file_get_contents('check-ins.txt');
+        $unserialisedCheckIn = unserialize($checkInFromFile);
+
+        $nameCheckIn = $unserialisedCheckIn->nameCheckIn;
+        $ratingCheckIn = $unserialisedCheckIn->ratingCheckIn;
+        $reviewCheckIn = $unserialisedCheckIn->reviewCheckIn;
+
+
+        switch ($ratingCheckIn) {
+                case 1:
+                    $ratingCheckIn = '<img class="starImg" src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Star_rating_1_of_5.png">';
+                    break;
+                case 2:
+                    $ratingCheckIn = '<img class="starImg" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Star_rating_2_of_5.png">';
+                    break;
+                case 3:
+                    $ratingCheckIn = '<img class="starImg" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Star_rating_3_of_5.png">';
+                    break;
+                case 4:
+                    $ratingCheckIn = '<img class="starImg" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Star_rating_4_of_5.png">';
+                    break;
+                case 5:
+                    $ratingCheckIn = '<img class="starImg" src="https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png">';
+                    break;
+            }
+
+    };
+
+    //var_dump($unserialisedCheckIn->ratingCheckIn);
+
+    // Save submission to file
+    //$checkinFile = 'check-ins.txt';
+    //if (file_exists($checkinFile) == false) {
+    // $checkInsArray = [];
+    // array_push($checkInsArray, $checkinData);
+    // $txtData = serialize($checkInsArray);
+    // file_put_contents($checkinFile, $txtData);
+    //} else {
+    //$fileContent = file_get_contents($checkinFile);
+    //$fileContent = unserialize($fileContent);
+    //array_push($fileContent, $checkinData);
+    //$txtData = serialize($fileContent);
+    //  file_put_contents($checkinFile, $txtData);
+    //foreach ($fileContent as $checkin){
+    //$date = date('d/m/Y', $checkin->timestamp);
+    //echo "<h3>$checkin->name  $checkin->rating</h3>";
+    //echo "<p>$checkin->review</p>";
+    //echo "<p><small>$date</small></p>";
+    //  }
+    // }
+
+    //eliminar archivo tras extraer datos
+    //unlink('check-ins.txt');
+    ?>
+
     <script>
+
         var ratingFormulaValue = 0;
         $.ajax({
             url: "http://localhost:8080/checkins",
@@ -140,9 +215,12 @@
                     $("#rating4").text(dataRating4);
                     $("#dateTime4").text(moment(dataDateTime4).format("DD-MMM-YYYY HH:MM"));
                 }
+                //var ratingCheckIn = '<?php echo $unserialisedCheckIn->ratingCheckIn; ?>';
                 ratingFormulaValue += dataRating4;
+                //ratingFormulaValue += ratingCheckIn;
+                //alert(ratingCheckIn);
                 starRating(4);
-                ratingFormulaValue = ((ratingFormulaValue / 4) * 100) / 5;
+                ratingFormulaValue = ((ratingFormulaValue / 5) * 100) / 5;
                 $('#averageRatingStarPercentage').text(ratingFormulaValue + "%");
                 ratingFormula();
             }
@@ -157,6 +235,7 @@
             case 2: singleRating= '#rating2'; break;
             case 3: singleRating= '#rating3'; break;
             case 4: singleRating= '#rating4'; break;
+            case 5: singleRating= '#rating5'; break;
         }
 
         switch ($(singleRating).text()){
@@ -188,39 +267,6 @@
             }
 
     </script>
-
-    <?php
-    class checkIn {
-        public $nameCheckIn;
-        public $ratingCheckIn;
-        public $reviewCheckIn;
-        public $timestampCheckIn;
-    }
-    if (!empty($_POST)) {
-        $checkIn = new checkIn();
-        $checkIn->nameCheckIn = $_POST ['nameCheckIn'];
-        $checkIn->ratingCheckIn = $_POST ['ratingCheckIn'];
-        $checkIn->reviewCheckIn = $_POST ['reviewCheckIn'];
-        $checkIn->timestampCheckIn = date('d-M-Y h:i', time());
-
-        $serialisedCheckIn = serialize($checkIn);
-        file_put_contents('check-ins.txt', $serialisedCheckIn);
-
-        //formula para extraer datos deserializados y poner en tabla
-        $checkInFromFile = file_get_contents('check-ins.txt');
-        $unserialisedCheckIn = unserialize($checkInFromFile);
-    }
-
-    //poner un foreach para scar datos deserializados y poner en la tabla
-
-
-        //echo $checkIn->nameCheckIn;
-
-
-
-    //eliminar archivo tras extraer datos
-    //unlink('check-ins.txt');
-    ?>
 
 </head>
 <body>
@@ -286,7 +332,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">New review</h5>
                         </div>
-                        <form id="myForm" action="" method="post">
+                        <form id="myForm" action="" method="post" onsubmit="alertMessage()">
                             <div class="modal-body">
 
                                     <div class="form-group">
@@ -299,7 +345,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="reviewCheckIn" class="col-form-label">Review:</label>
-                                        <textarea class="form-control" name="reviewCheckIn" id="reviewCheckIn" minlength="100" maxlength="2500" required></textarea>
+                                        <textarea class="form-control" name="reviewCheckIn" id="reviewCheckIn" maxlength="2500" required></textarea>
                                             <div id="charactersRemaining"><span id="chars">2500</span> characters remaining</div>
                                         <script>
                                             var maxLength = 2500;
@@ -314,15 +360,15 @@
 
                             <div class="modal-footer">
                                 <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button id="submitButton" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
-                                    <div class="modal fade" id="myModal" role="dialog">
+                                <button type="submit" id="submitButton" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+                                    <!--<div class="modal fade" id="myModal" role="dialog">
                                         <div class="modal-dialog">
                                             <div class="alert alert-success alert-dismissible">
-                                                <a  class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                                                <a class="close" data-dismiss="modal" aria-label="close">&times;</a>
                                                 <strong>Success!</strong> Your review was updated.
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                             </div>
                         </form>
                     </div>
@@ -330,6 +376,10 @@
             </div>
 
             <script>
+
+                function alertMessage(){
+                    alert('Review submitted successfully')
+                };
 
                 $("#closeButton").on("click", function () {
                     //Close Modal
@@ -518,13 +568,13 @@
         <table class="table">
             <thead>
             <tr style="display:flex; width:100%; margin-top: 2%">
-                <th scope="row"; style="width: 600px; border-top: none; border-bottom: none"><h3 font-size: medium id="name5"><?php echo $unserialisedCheckIn->nameCheckIn ?></h3></th>
-                <td style="margin-left: 0%;border-top: none; border-bottom: none" id="rating5"><?php echo $unserialisedCheckIn->ratingCheckIn ?></td>
+                <th scope="row"; style="width: 600px; border-top: none; border-bottom: none"><h3 font-size: medium id="name5"><?php echo $nameCheckIn ?></h3></th>
+                <td style="margin-left: 0%;border-top: none; border-bottom: none" id="rating5"><?php echo $ratingCheckIn ?></td>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none" id="review5"><?php echo $unserialisedCheckIn->reviewCheckIn ?></td>
+                <td style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none" id="review5"><?php echo $reviewCheckIn ?></td>
             </tr>
             <tr>
                 <td style="width: 200px; margin-left: 50%; border-top: none; border-bottom: none" id="dateTime5"><?php echo $checkIn->timestampCheckIn ?></td>
@@ -532,7 +582,6 @@
             </tbody>
         </table>
     </div>
-
     <div id="bigPicture">
         <img id="mainPicture" style="alignment: center; display: block" src="">
     </div>
