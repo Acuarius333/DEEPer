@@ -68,7 +68,7 @@
         $serialisedCheckIn = serialize($checkIn);
         file_put_contents('check-ins.txt', $serialisedCheckIn);
 
-        //formula para extraer datos deserializados y poner en tabla
+        //formula para extraer datos deserializados
         $checkInFromFile = file_get_contents('check-ins.txt');
         $unserialisedCheckIn = unserialize($checkInFromFile);
 
@@ -97,6 +97,37 @@
 
     };
 
+    //require_once 'setup.php';
+
+    //use Carbon\Carbon;
+    class submition {
+        public $nameSubmition;
+        public $dateOfBirthSubmition;
+        public $emailSubmition;
+        public $timestampSubmition;
+    }
+    if (!empty($_POST)) {
+        $submition = new submition();
+        $submition->nameSubmition = $_POST ['nameSubmition'];
+        $submition->dateOfBirthSubmition = $_POST ['dateOfBirthSubmition'];
+        $submition->emailSubmition = $_POST ['emailSubmition'];
+        $submition->timestampSubmition = date('d-M-Y h:i', time());
+
+        $serialisedSubmition = serialize($submition);
+        file_put_contents('submitionData.txt', $serialisedSubmition);
+
+        //formula para extraer datos deserializados
+        $submitionFromFile = file_get_contents('submitionData.txt');
+        $unserialisedSubmition = unserialize($submitionFromFile);
+
+        //$nameSubmition = $unserialisedSubmition->nameSubmition;
+        //$dateOfBirthSubmition = $unserialisedCheckIn->dateOfBirthSubmition;
+        //$emailSubmition = $unserialisedSubmition->emailSubmition;
+
+        //echo $unserialisedSubmition;
+
+    };
+
     //var_dump($unserialisedCheckIn->ratingCheckIn);
 
     // Save submission to file
@@ -122,6 +153,27 @@
 
     //eliminar archivo tras extraer datos
     //unlink('check-ins.txt');
+
+
+    $target_dir = "deeper/exercises/week-01/HTML/uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["submit3"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
     ?>
 
     <script>
@@ -375,6 +427,52 @@
                 </div>
             </div>
 
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Photo submission</button>
+
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Submit your photo</h5>
+                        </div>
+                        <form id="myForm2" action="" method="post" enctype="multipart/form-data">
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="nameSubmition" class="col-form-label">Name:</label>
+                                    <input type="text" name="nameSubmition" id="nameSubmition" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateOfBirthSubmition" class="col-form-label">Date of birth:</label>
+                                    <input type="text" placeholder="dd/mm/yyyy" class="form-control" name="dateOfBirthSubmition" id="dateOfBirthSubmition" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailSubmition" class="col-form-label">Email address:</label>
+                                    <input type="text" placeholder="example@example.com" class="form-control" name="emailSubmition" id="emailSubmition" required></input>
+                                </div>
+                                <div>
+                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                    <input type="submit" value="Upload Image" name="submit3">
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button id="closeButton2" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button id="submitButton2" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+                                <!--<div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="alert alert-success alert-dismissible">
+                                            <a class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                                            <strong>Success!</strong> Your review was updated.
+                                        </div>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <script>
 
                 function alertMessage(){
@@ -409,6 +507,36 @@
                     var val3 = $("#reviewCheckIn").val();
                     //Reset Values
                     document.getElementById("myForm").reset();
+
+                });
+                $("#closeButton2").on("click", function () {
+                    //Close Modal
+                    $(".modal").modal("hide");
+                    //Get Values
+                    var val1 = $("#nameSubmition").val();
+                    var val2 = $("#dateOfBirthSubmition").val();
+                    var val3 = $("#emailSubmition").val();
+                    //Reset Values
+                    document.getElementById("myForm2").reset();
+
+                });
+                document.addEventListener("click", function (evt) {
+                    var flyoutElement = document.getElementById("exampleModal2"),
+                        targetElement = evt.target;  // clicked element
+                    do {
+                        if (targetElement == flyoutElement) {
+                            // This is a click inside. Do nothing, just return.
+                            return;
+                        }
+                        // Go up the DOM
+                        targetElement = targetElement.parentNode;
+                    } while (targetElement);
+                    //Get Values
+                    var val1 = $("#nameSubmition").val();
+                    var val2 = $("#dateOfBirthSubmition").val();
+                    var val3 = $("#emailSubmition").val();
+                    //Reset Values
+                    document.getElementById("myForm2").reset();
 
                 });
 

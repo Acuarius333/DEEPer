@@ -1,1 +1,1 @@
-O:7:"checkIn":4:{s:11:"nameCheckIn";s:2:"rr";s:13:"ratingCheckIn";s:1:"4";s:13:"reviewCheckIn";s:2:"ff";s:16:"timestampCheckIn";s:17:"09-Feb-2021 04:41";}
+O:7:"checkIn":4:{s:11:"nameCheckIn";N;s:13:"ratingCheckIn";N;s:13:"reviewCheckIn";N;s:16:"timestampCheckIn";s:17:"10-Feb-2021 03:18";}
