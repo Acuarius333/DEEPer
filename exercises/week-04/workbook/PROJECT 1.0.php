@@ -52,6 +52,9 @@
 
     <?php
 
+    require_once'../lecture/vendor/autoload.php';
+    use Carbon\Carbon;
+
     class checkIn {
         public $nameCheckIn;
         public $ratingCheckIn;
@@ -97,9 +100,7 @@
 
     };
 
-    //require_once 'setup.php';
 
-    //use Carbon\Carbon;
     class submition {
         public $nameSubmition;
         public $dateOfBirthSubmition;
@@ -111,7 +112,7 @@
         $submition->nameSubmition = $_POST ['nameSubmition'];
         $submition->dateOfBirthSubmition = $_POST ['dateOfBirthSubmition'];
         $submition->emailSubmition = $_POST ['emailSubmition'];
-        $submition->timestampSubmition = date('d-M-Y h:i', time());
+        $submition->timestampSubmition = Carbon::now();
 
         $serialisedSubmition = serialize($submition);
         file_put_contents('submitionData.txt', $serialisedSubmition);
@@ -125,8 +126,29 @@
         //$emailSubmition = $unserialisedSubmition->emailSubmition;
 
         //echo $unserialisedSubmition;
+        if (!empty($_FILES)) {
+            $target_dir = "~/projects/deeper/exercises/week-04/workbook/uploads";
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            // Check if image file is a actual image or fake image
+            if(isset($_POST["submit3"])) {
+                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                if($check !== false) {
+                    $uploadOk = 1;
+                } else {
+                    $uploadOk = 0;
+                }
+            }
+            if (file_exists($target_file)) {
+                echo "Sorry, file already exists.";
+                $uploadOk = 0;
+            }
 
+        };
     };
+
+
 
     //var_dump($unserialisedCheckIn->ratingCheckIn);
 
@@ -155,25 +177,7 @@
     //unlink('check-ins.txt');
 
 
-    $target_dir = "deeper/exercises/week-01/HTML/uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit3"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
+
     ?>
 
     <script>
