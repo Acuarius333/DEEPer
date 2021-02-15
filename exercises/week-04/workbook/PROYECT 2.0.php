@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <?php
@@ -437,12 +438,6 @@
                 document.getElementById("mainPicture").style.visibility = "hidden";
             }
         }
-
-
-
-
-
-
     </script>
 
 </head>
@@ -620,6 +615,8 @@
                             <label for="emailSubmit" class="col-form-label">Email address:</label>
                             <input type="text" placeholder="example@example.com" class="form-control" name="emailSubmit" id="emailSubmit" required></input>
                         </div>
+                        <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+                        <br/>
                         <div>
                             <input type="file" name="fileToUpload" id="fileToUpload">
                             <!--<input type="submit" value="Upload Image" name="submit3">-->
