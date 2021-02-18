@@ -1,1 +1,2 @@
 O:7:"checkIn":4:{s:11:"nameCheckIn";s:5:"Maria";s:13:"ratingCheckIn";s:1:"5";s:13:"reviewCheckIn";s:10:"Very nice!";s:16:"timestampCheckIn";O:13:"Carbon\Carbon":3:{s:4:"date";s:26:"2021-02-13 11:07:36.110646";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/London";}}
+O:7:"checkIn":4:{s:11:"nameCheckIn";s:2:"gg";s:13:"ratingCheckIn";s:1:"2";s:13:"reviewCheckIn";s:2:"dd";s:16:"timestampCheckIn";O:13:"Carbon\Carbon":3:{s:4:"date";s:26:"2021-02-15 16:48:41.692653";s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/London";}}
