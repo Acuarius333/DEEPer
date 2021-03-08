@@ -51,3 +51,15 @@
     sliders.forEach(slider => {
         appearOnScroll.observe(slider);
     });
+
+
+
+
+
+
+
+
+
+
+
+

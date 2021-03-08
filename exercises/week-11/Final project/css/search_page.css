@@ -32,6 +32,7 @@ header {
 .nav__list {
     list-style: none;
     margin: 0;
+    margin-right: -20px;
     padding: 0;
     display: flex;
 }
@@ -88,8 +89,8 @@ header {
 }
 
 .nav__link--btn--highlight {
-    background: limegreen;
-    border-color: limegreen;
+    background: #f84f4f;
+    border-color: #f84f4f;
     color: #333;
 }
 
@@ -107,63 +108,73 @@ header {
 
 .home-intro {
     padding: 50vh 0;
-    background: #123 url(//unsplash.it/900);
+    background: #771d31 url("https://cdn.pixabay.com/photo/2015/11/30/23/32/champagner-1071356_960_720.jpg");
     background-size: cover;
     background-blend-mode: multiply;
     color: white;
     text-align: center;
 }
 
-.home-about {
-    padding: 4em 0;
-    max-width: 900px;
-    margin: 0 auto;
+                /*SEARCH BAR*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.columns {
+
+.container {
+    width: 100vw;
+    height: 0vh;
     display: flex;
-}
-
-.col + .col {
-    margin-left: 1.5em;
-}
-
-.more-stuff-grid {
-    background: #f4f4f4;
-    padding: 4em 0;
-    display: grid;
-    grid-gap: 2em;
+    justify-content: center;
     align-items: center;
-    grid-template-columns: minmax(1em, 1fr) repeat(2, minmax(200px, 400px)) minmax(1em, 1fr);
 }
-
-.from-left {
-    grid-column: 2 / 3;
-    transform: translateX(-50%);
+.container .searchbox {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 53px;
+    transition: 0.4s linear;
+    overflow: hidden;
 }
-
-.from-right {
-    grid-column: 3 / 4;
-    transform: translateX(50%);
+.container .searchbox .searchbox__input {
+    display: block;
+    appearance: none;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    background-color: #24233A;
+    padding: 15px;
+    color: #24233A;
+    font-size: 20px;
+    cursor: pointer;
 }
-
-.from-left,
-.from-right {
-    transition: opacity 250ms ease-in, transform 400ms ease-in;
-    opacity: 0;
+.container .searchbox .searchbox__input::placeholder {
+    color: #24233A;
 }
-
-.from-left.appear,
-.from-right.appear {
-    transform: translateX(0);
-    opacity: 1;
+.container .searchbox .searchbox__icon {
+    position: absolute;
+    right: calc(53px / 2);
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
 }
-
-.fade-in {
-    opacity: 0;
-    transition: opacity 250ms ease-in;
+.container .searchbox .searchbox__icon path {
+    fill: #00F494;
+    transition: 0.4s linear;
 }
-
-.fade-in.appear {
-    opacity: 1;
+.container .searchbox:focus-within {
+    max-width: 300px;
+}
+.container .searchbox:focus-within .searchbox__input {
+    background-color: #FFF;
+    padding-right: 50px;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+.container .searchbox:focus-within .searchbox__icon path {
+    fill: #24233A;
 }
