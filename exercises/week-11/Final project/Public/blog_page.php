@@ -9,8 +9,8 @@
             href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
             rel="stylesheet"
     >
-    <link rel="stylesheet" href="css/blog_page.css">
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="../src/css/blog_page.css">
+
     <script src="jquery-3.5.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -112,7 +112,7 @@
             </div>
 
             <img
-                    src="Resources/Images/1.jpg"
+                    src="../src/Images/1.jpg"
                     alt=""
                     class="slide-in from-left"
             >
@@ -143,14 +143,14 @@
                 like an Argentine malbec or is it light like a beaujolais?
             </p>
             <img
-                    src="Resources/Images/2.jpg"
+                    src="../src/Images/2.jpg"
                     alt=""
                     class="slide-in from-right"
             >
         </div>
         <div class="more-stuff-grid">
             <img
-                    src="Resources/Images/3.jpg"
+                    src="../src/Images/3.jpg"
                     alt=""
                     class="slide-in from-left"
             >
@@ -185,14 +185,14 @@
                 such as sancerre, from the same area.
             </p>
             <img
-                    src="Resources/Images/4.jpg"
+                    src="../src/Images/4.jpg"
                     alt=""
                     class="slide-in from-right"
             >
         </div>
         <div class="more-stuff-grid">
             <img
-                    src="Resources/Images/5.jpg"
+                    src="../src/Images/5.jpg"
                     alt=""
                     class="slide-in from-left"
             >
@@ -210,7 +210,7 @@
     </div>
 </main>
 
-
+<script src="../src/js/main.js"></script>
 
 </body>
 </html>

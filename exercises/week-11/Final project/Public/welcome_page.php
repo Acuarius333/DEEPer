@@ -9,7 +9,7 @@
             href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
             rel="stylesheet"
     >
-    <link rel="stylesheet" href="css/welcome_page.css">
+    <link rel="stylesheet" href="../src/css/welcome_page.css">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                     <a href="#" class="nav__link">Pricing</a>
                 </li>
                 <li>
-                    <a href="blog_page.html" class="nav__link">Blog</a>
+                    <a href="blog_page.php" class="nav__link">Blog</a>
                 </li>
             </ul>
         </nav>
@@ -164,6 +164,6 @@
         </div>
     </main>
 
-    <script src="js/main.js"></script>
+    <script src="../src/js/main.js"></script>
 </body>
 </html>
