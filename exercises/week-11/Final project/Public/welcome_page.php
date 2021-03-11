@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +16,7 @@
 
 <body>
     <header>
-        <a href="welcome_page.html" class="site-logo" aria-label="homepage">OneUp Wine</a>
+        <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
         <nav class="main-nav">
             <ul class="nav__list">
 
@@ -37,7 +39,7 @@
                 <li>
                     <a
                         class="nav__link nav__link--btn"
-                        href="#"
+                        href="register_page.php"
                     >Sign up</a>
                 </li>
                 <li>

@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +43,7 @@
 
 <body>
 <header>
-    <a href="welcome_page.html" class="site-logo" aria-label="homepage">OneUp Wine</a>
+    <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
     <nav class="main-nav">
         <ul class="nav__list">
 
@@ -55,7 +57,7 @@
                 <a href="#" class="nav__link">Pricing</a>
             </li>
             <li>
-                <a href="blog_page.html" class="nav__link">Blog</a>
+                <a href="blog_page.php" class="nav__link">Blog</a>
             </li>
         </ul>
     </nav>

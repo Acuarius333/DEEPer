@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +16,7 @@
 
 <body>
     <header class="viewport-header">
-        <a href="welcome_page.html" class="site-logo" aria-label="homepage">OneUp Wine</a>
+        <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
         <nav class="main-nav">
             <ul class="nav__list">
                 <li>
