@@ -88,9 +88,15 @@ header {
     display: none;
 }
 
-.nav__link--btn--highlight {
+.nav__link--btn--highlight-login {
     background: limegreen;
     border-color: limegreen;
+    color: #333;
+}
+
+.nav__link--btn--highlight-logout{
+    background: #f84f4f;
+    border-color: #f84f4f;
     color: #333;
 }
 
@@ -108,7 +114,7 @@ header {
 
 .home-intro {
     padding: 50vh 0;
-    background: #771d31 url(https://cdn.pixabay.com/photo/2017/11/09/15/58/wine-2933943_960_720.jpg);
+    background: #771d31 url("https://cdn.pixabay.com/photo/2017/11/09/15/58/wine-2933943_960_720.jpg");
     background-size: cover;
     background-blend-mode: multiply;
     color: white;
@@ -137,6 +143,7 @@ header {
     align-items: center;
     grid-template-columns: minmax(1em, 1fr) repeat(2, minmax(200px, 400px)) minmax(1em, 1fr);
 }
+
 
 .from-left {
     grid-column: 2 / 3;
@@ -168,5 +175,3 @@ header {
 .fade-in.appear {
     opacity: 1;
 }
-
-

@@ -27,4 +27,3 @@ class Product
         return $this->checkIns;
     }
 }
-?>

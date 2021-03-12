@@ -11,4 +11,3 @@ class CheckIn
     public string $review;
     public string $posted;
 }
-?>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DataProvider;
 
 use App\Entity\CheckIn;
@@ -29,6 +30,93 @@ class DatabaseProvider
 
     }
 
+    public function getProducts(string $searchTerm): array
+    {
+        $stmt = $this->dbh->prepare('SELECT id, title FROM product WHERE title LIKE :searchTerm');
+        $stmt->execute([
+            'searchTerm' => '%' . $searchTerm . '%'
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Product::class);
+    }
+
+    public function getProduct(int $productId): ?Product
+    {
+        $stmt = $this->dbh->prepare(
+            'SELECT
+            p.id AS product_id, p.title, p.description, p.image_path,
+            c.id, c.name, c.rating, c.review, c.posted,
+            (
+                SELECT AVG(checkin.rating) FROM checkin WHERE product_id = p.id
+            ) as average_rating
+            FROM product AS p
+            LEFT JOIN checkin c ON c.product_id = p.id
+            WHERE p.id = :id'
+        );
+        $stmt->execute([
+            'id' => $productId
+        ]);
+
+        $productAndCheckInData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $hydrator = new EntityHydrator();
+        return $hydrator->hydrateProductWithCheckIns($productAndCheckInData);
+    }
+
+    public function createProduct(Product $product): Product
+    {
+        $stmt = $this->dbh->prepare(
+            'INSERT INTO product (title, description)
+            VALUES (:title, :description)'
+        );
+
+        $stmt->execute([
+            'title' => $product->title,
+            'description' => $product->description,
+        ]);
+
+        $lastInsertId = $this->dbh->lastInsertId();
+        $newProduct = $this->getProduct($lastInsertId);
+        return $newProduct;
+    }
+
+    public function getCheckIn(int $checkInId): ?CheckIn
+    {
+        $stmt = $this->dbh->prepare(
+            'SELECT id, product_id, name, rating, review, posted
+            FROM checkin
+            WHERE id = :id'
+        );
+        $stmt->execute(['id' => $checkInId]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (empty($result)) {
+            return null;
+        }
+
+        $hydrator = new EntityHydrator();
+        return $hydrator->hydrateCheckIn($result);
+    }
+
+    public function createCheckin(CheckIn $checkIn): CheckIn
+    {
+        $stmt = $this->dbh->prepare('
+        INSERT INTO checkin (name, rating, review, product_id)
+        VALUE (:name, :rating, :review, :productId)
+        ');
+
+        $stmt->execute([
+            'name' => $checkIn->name,
+            'rating' => $checkIn->rating,
+            'review' => $checkIn->review,
+            'productId' => $checkIn->productId
+        ]);
+
+        $lastInsertId = $this->dbh->lastInsertId();
+        $newCheckIn = $this->getCheckIn($lastInsertId);
+
+        return $newCheckIn;
+    }
 
     public function getUser(int $userId): ?User
     {
@@ -87,4 +175,3 @@ class DatabaseProvider
         return $newUser;
     }
 }
-?>

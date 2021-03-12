@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Entity;
@@ -9,4 +10,3 @@ class User
     public string $emailAddress;
     public string $password;
 }
-?>

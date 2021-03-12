@@ -22,6 +22,7 @@ function conect_mysqli(){
     return $conection;
 }
 
+/*
 $registered = false;
 $user = new user();
 if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPassword'])) {
@@ -50,6 +51,114 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPa
             </script>";
     }
 }
+*/
+
+class EntityHydrator
+{
+    public function hydrateProduct(array $data): Product
+    {
+        $product = new Product();
+        $product->id = $data['id'];
+        $product->title = $data['title'];
+        $product->description = $data['description'];
+        $product->imagePath = $data['image_path'];
+        $product->average_rating = $data['average_rating'];
+
+        return $product;
+    }
+
+    public function hydrateCheckIn(array $data): CheckIn
+    {
+        $checkIn = new CheckIn();
+        $checkIn->id = $data['id'] ?? null;
+        $checkIn->name = $data['name'];
+        $checkIn->rating = $data['rating'];
+        $checkIn->review = $data['review'];
+        $checkIn->productId = $data['product_id'];
+
+        return $checkIn;
+    }
+
+    public function hydrateProductWithCheckIns(array $data): Product
+    {
+        $productData = [
+            'id' => $data[0]['product_id'],
+            'title' => $data[0]['title'],
+            'description' => $data[0]['description'],
+            'image_path' => $data[0]['image_path'],
+            'average_rating' => $data[0]['average_rating'],
+        ];
+
+        $product = $this->hydrateProduct($productData);
+
+        foreach ($data as $checkinRow) {
+            if ($checkinRow['name'] !== null) {
+                $checkIn = $this->hydrateCheckIn($checkinRow);
+                $product->addCheckin($checkIn);
+            }
+        }
+
+        return $product;
+    }
+
+    public function hydrateUser (array $data): User
+    {
+        $user = new User();
+        $user->id = $data['id'] ?? null;
+        $user->name = $data['name'];
+        $user->emailAddress = $data['email_address'];
+        $user->password = $data['password'];
+
+        return $user;
+    }
+}
+
+function getUserByEmail(string $loginEmail): ?User
+{
+    $stmt = $this->dbh->prepare(
+        'SELECT id, name, email_address, password
+            FROM user
+            WHERE email_address = :loginEmail'
+    );
+    $stmt->execute(['loginEmail' => $loginEmail]);
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (empty($result)) {
+        return null;
+    }
+
+    $hydrator = new EntityHydrator();
+    return $hydrator->hydrateUser($result);
+}
+
+
+
+if (isset($_POST['loginEmail'], $_POST['loginPassword'])) {
+    $user = getUserByEmail($_POST['loginEmail']);
+
+    if ($user && password_verify($_POST['loginPassword'], $user->password)) {
+        // Logged in
+        $_SESSION['loginId'] = $user->id;
+        header('Location: welcome_page.php');
+        exit;
+    } else {
+        $errorMessage = 'Incorrect details, please try again';
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 function cerrar_sesion_usuario() {
@@ -78,44 +187,45 @@ if (isset($_GET['call']) && $_GET['call'] == 'desconectar_usuario') {
     cerrar_sesion_usuario();
 */
 /////////
-///
-///
-/*
-unction comprobar_usuario($usuario, $clave){
 
-$conexion = conectar_mysqli();
-$consulta=' select clave, id, nivel_acceso, tiempo
-from usuarios
-where usuarios.usuario = "'.$usuario.'"
+
+//// RECOPIAR ESTE CODIGO DEL EMAIL /////
+/*function comprobar_usuario($loginEmail, $loginPassword){
+
+$conexion = conect_mysqli();
+$consult=' select email_address, password
+from user
+where user.email_address === "'.$loginEmail.'"
 limit 0, 1';
 
-$consulta = mysqli_query($conexion, $consulta) or die("Error: ".mysqli_error($conexion));
-$usuario_bd = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
-mysqli_free_result($consulta);
+$consult = mysqli_query($conexion, $consult) or die("Error: ".mysqli_error($conexion));
+$user_bd = mysqli_fetch_array($consult, MYSQLI_ASSOC);
+mysqli_free_result($consult);
 mysqli_close($conexion);
 
-if($usuario_bd != NULL ){
-    if($usuario_bd["clave"] == $clave){
-        session_start();
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['id'] = $usuario_bd['id'];
-        $_SESSION['clave'] = $usuario_bd['clave'];
-        $_SESSION['nivel_acceso'] = $usuario_bd['nivel_acceso'];
-        $_SESSION['last_action'] = time();
-        $_SESSION["tiempo"] = $usuario_bd['tiempo'];
+if($user_bd != NULL ){
+    if($user_bd["password"] === $loginPassword){
+        echo ('logued');
 
-        $resultado = 1; // Todo correcto
+        //session_start();
+        $_SESSION['email_address'] = $loginEmail;
+        $_SESSION['password'] = $loginPassword;
+
+        $result = 1; // Todo correcto
     }
     else{
-        $resultado =  2;// Error en la clave
+        $result =  2;// Error en la clave
+        echo ('error');
     }
 }
 else{
-    $resultado =  3; // Error en el usuario
+    $result =  3; // Error en el usuario
 }
 
-return $resultado;
+return $result;
+echo $result;
 }
+/*
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Start our session.
 session_start();

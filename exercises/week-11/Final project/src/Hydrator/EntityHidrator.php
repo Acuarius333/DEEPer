@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Hydrator;
@@ -66,4 +67,3 @@ class EntityHydrator
         return $user;
     }
 }
-?>
