@@ -1,4 +1,5 @@
 <?php
+/*
 class User
 {
     public ?int $id;
@@ -10,7 +11,7 @@ class User
 function conect_mysqli(){
 
     $hostname = "mysql";
-    $database = "oneupwine";
+    $database = "project";
     $username = "root";
     $password = "root";
 
@@ -22,7 +23,7 @@ function conect_mysqli(){
     return $conection;
 }
 
-/*
+
 $registered = false;
 $user = new user();
 if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPassword'])) {
@@ -42,110 +43,18 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPa
 
         $consult = mysqli_query($conection, $consult) or die("Error: " . mysqli_error($conection));
         $IdNew = mysqli_insert_id($conection);
-        mysqli_close($conection);
+
         $registered = true;
         header('Location: welcome_page.php');
+        mysqli_close($conection);
+
     } else {
             echo "<script>
             alert('Password don\'t match. Please try again');
             </script>";
     }
 }
-*/
 
-class EntityHydrator
-{
-    public function hydrateProduct(array $data): Product
-    {
-        $product = new Product();
-        $product->id = $data['id'];
-        $product->title = $data['title'];
-        $product->description = $data['description'];
-        $product->imagePath = $data['image_path'];
-        $product->average_rating = $data['average_rating'];
-
-        return $product;
-    }
-
-    public function hydrateCheckIn(array $data): CheckIn
-    {
-        $checkIn = new CheckIn();
-        $checkIn->id = $data['id'] ?? null;
-        $checkIn->name = $data['name'];
-        $checkIn->rating = $data['rating'];
-        $checkIn->review = $data['review'];
-        $checkIn->productId = $data['product_id'];
-
-        return $checkIn;
-    }
-
-    public function hydrateProductWithCheckIns(array $data): Product
-    {
-        $productData = [
-            'id' => $data[0]['product_id'],
-            'title' => $data[0]['title'],
-            'description' => $data[0]['description'],
-            'image_path' => $data[0]['image_path'],
-            'average_rating' => $data[0]['average_rating'],
-        ];
-
-        $product = $this->hydrateProduct($productData);
-
-        foreach ($data as $checkinRow) {
-            if ($checkinRow['name'] !== null) {
-                $checkIn = $this->hydrateCheckIn($checkinRow);
-                $product->addCheckin($checkIn);
-            }
-        }
-
-        return $product;
-    }
-
-    public function hydrateUser (array $data): User
-    {
-        $user = new User();
-        $user->id = $data['id'] ?? null;
-        $user->name = $data['name'];
-        $user->emailAddress = $data['email_address'];
-        $user->password = $data['password'];
-
-        return $user;
-    }
-}
-
-function getUserByEmail(string $loginEmail): ?User
-{
-    $stmt = $this->dbh->prepare(
-        'SELECT id, name, email_address, password
-            FROM user
-            WHERE email_address = :loginEmail'
-    );
-    $stmt->execute(['loginEmail' => $loginEmail]);
-
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (empty($result)) {
-        return null;
-    }
-
-    $hydrator = new EntityHydrator();
-    return $hydrator->hydrateUser($result);
-}
-
-
-
-if (isset($_POST['loginEmail'], $_POST['loginPassword'])) {
-    $user = getUserByEmail($_POST['loginEmail']);
-
-    if ($user && password_verify($_POST['loginPassword'], $user->password)) {
-        // Logged in
-        $_SESSION['loginId'] = $user->id;
-        header('Location: welcome_page.php');
-        exit;
-    } else {
-        $errorMessage = 'Incorrect details, please try again';
-    }
-}
 
 
 
@@ -211,7 +120,7 @@ if($user_bd != NULL ){
         $_SESSION['email_address'] = $loginEmail;
         $_SESSION['password'] = $loginPassword;
 
-        $result = 1; // Todo correcto
+        $result = 1; // To-do correcto
     }
     else{
         $result =  2;// Error en la clave

@@ -11,7 +11,7 @@
             href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
             rel="stylesheet"
     >
-    <link rel="stylesheet" href="../src/css/search_page.css">
+    <link rel="stylesheet" href="../src/css/search.css">
 </head>
 
 <body>

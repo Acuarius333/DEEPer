@@ -8,7 +8,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     if ($user && password_verify($_POST['password'], $user->password)) {
         // Logged in
         $_SESSION['loginId'] = $user->id;
-        header('Location: product-list.php');
+        header('Location: welcome_page.php');
         exit;
     } else {
         $errorMessage = 'Incorrect details, please try again';

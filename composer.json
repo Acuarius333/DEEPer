@@ -10,7 +10,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src"
+            "App\\": ["src",
+                "project/src"
+            ]
         }
     },
     "require": {

@@ -11,7 +11,7 @@
             href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
             rel="stylesheet"
     >
-    <link rel="stylesheet" href="../src/css/blog_page.css">
+    <link rel="stylesheet" href="../src/css/blog.css">
 
     <script src="jquery-3.5.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

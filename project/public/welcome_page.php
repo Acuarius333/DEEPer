@@ -11,7 +11,7 @@
             href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
             rel="stylesheet"
     >
-    <link rel="stylesheet" href="../src/css/welcome_page.css">
+    <link rel="stylesheet" href="../src/css/welcome.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
             </ul>
         </nav>
 
-        <?php if (1==1) : ?>
+        <?php if ($loggedInUser=false) : ?>
             <nav>
                 <ul class="nav__list">
                     <li>
@@ -69,7 +69,7 @@
                         <li>
                             <a
                                 class="nav__link nav__link--btn nav__link--btn--highlight-login"
-                                href="#"
+                                href="login_page.php"
                             >Log in</a
                             >
                         </li>
