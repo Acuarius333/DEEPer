@@ -1,4 +1,5 @@
 <?php
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,11 +36,11 @@
             </ul>
         </nav>
 
-        <?php if ($loggedInUser=false) : ?>
+        <?php if(isset($_SESSION ['loginId'])): ?>
             <nav>
                 <ul class="nav__list">
                     <li>
-                        <a style="position: absolute; top: 3px; right: 90px;">Hello Francisco</a>
+                        <a style="position: absolute; top: 3px; left: 1163px;">Hello <?php echo $_SESSION ['userName']; ?></a>
                     </li>
                     <li>
                         <a
@@ -50,11 +51,10 @@
                     <li>
                         <a
                                 class="nav__link nav__link--btn nav__link--btn--highlight-logout"
-                                href="#"
+                                href="../src/php/logout.php"
                         >Log out</a
                         >
                     </li>
-
                 </ul>
             </nav>
         <?php else: ?>
@@ -76,7 +76,7 @@
 
                 </ul>
             </nav>
-        <?php endif; ?>
+        <?php endif;?>
     </header>
 
     <main>

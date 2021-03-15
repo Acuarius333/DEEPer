@@ -2,53 +2,65 @@
 
 require_once '../src/setup.php';
 
+$errorMessage = '';
+
+
 if (isset($_POST['email'], $_POST['password'])) {
     $user = $dbProvider->getUserByEmail($_POST['email']);
 
     if ($user && password_verify($_POST['password'], $user->password)) {
+        $_SESSION = array();
         // Logged in
         $_SESSION['loginId'] = $user->id;
+        $_SESSION['userName'] = $user->name;
         header('Location: welcome_page.php');
-        exit;
     } else {
-        $errorMessage = 'Incorrect details, please try again';
+        $errorMessage = 'Error: Incorrect details, please try again';
     }
 }
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang= "en">
 <head>
-
-    <title>Log in</title>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="../src/css/login.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
 </head>
-<body class="p-4">
-<div class="container">
-
+<body>
+<br>
+<br>
+<br>
+<a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
+<div class="main-w3layouts wrapper">
     <h1>Log in</h1>
-    <?php if (isset($errorMessage)): ?>
-        <div class="alert alert-warning"><?= $errorMessage ?></div>
-    <?php endif; ?>
-    <form method="post" autocomplete="off">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="email-input">Email Address</label>
-                    <input name="email" type="email" class="form-control" id="email-input" value="<?= $_POST['email'] ?? '' ?>">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="password-input">Password</label>
-                    <input name="password" type="password" class="form-control" id="password-input">
-                </div>
-            </div>
-            <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Log in</button>
-            </div>
+    <div style="margin-top: 20px" class="main-agileinfo">
+        <div class="agileits-top">
+                <div style="margin-top: -30px" class="alert"><?php echo ($errorMessage) ?></div>
+            <form id="myForm" action="#" method="post">
+                <input class="text email" type="email" name="email" placeholder="Email" required>
+                <input class="text" type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="LOGIN">
+            </form>
+            <p>Not registered yet? <a href="register_page.php">Sign up Now!</a></p>
         </div>
-    </form>
-</div>
+    </div>
 
+    <ul class="bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 </body>
 </html>

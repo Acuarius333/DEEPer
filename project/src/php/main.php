@@ -57,7 +57,41 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPa
 
 
 
+function comprobar_usuario($usuario, $clave){
 
+$conexion = conectar_mysqli();
+$consulta=' select clave, id, nivel_acceso, tiempo
+from usuarios
+where usuarios.usuario = "'.$usuario.'"
+limit 0, 1';
+
+$consulta = mysqli_query($conexion, $consulta) or die("Error: ".mysqli_error($conexion));
+$usuario_bd = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
+mysqli_free_result($consulta);
+mysqli_close($conexion);
+
+if($usuario_bd != NULL ){
+if($usuario_bd["clave"] == $clave){
+session_start();
+$_SESSION['usuario'] = $usuario;
+$_SESSION['id'] = $usuario_bd['id'];
+$_SESSION['clave'] = $usuario_bd['clave'];
+$_SESSION['nivel_acceso'] = $usuario_bd['nivel_acceso'];
+$_SESSION['last_action'] = time();
+$_SESSION["tiempo"] = $usuario_bd['tiempo'];
+
+$resultado = 1; // everything is correct
+}
+else{
+$resultado =  2;// Error en la clave
+}
+}
+else{
+$resultado =  3; // Error en el usuario
+}
+
+return $resultado;
+}
 
 
 
