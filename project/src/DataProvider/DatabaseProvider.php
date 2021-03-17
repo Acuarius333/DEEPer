@@ -32,7 +32,29 @@ class DatabaseProvider
 
     public function getProducts(string $searchTerm): array
     {
-        $stmt = $this->dbh->prepare('SELECT id, title FROM product WHERE title LIKE :searchTerm');
+        $stmt = $this->dbh->prepare(
+            'SELECT 
+                      id, name, type, country, location, description, views, image_path 
+                      FROM product 
+                      WHERE keywords 
+                      LIKE :searchTerm');
+
+        $stmt->execute([
+            'searchTerm' => '%' . $searchTerm . '%'
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Product::class);
+    }
+
+    public function getProductsByType(string $searchTerm): array
+    {
+        $stmt = $this->dbh->prepare(
+            'SELECT 
+                      id, name, type, country, location, description, views, image_path 
+                      FROM product 
+                      WHERE keywords 
+                      LIKE :searchTerm
+                      ORDER BY type ASC');
+
         $stmt->execute([
             'searchTerm' => '%' . $searchTerm . '%'
         ]);

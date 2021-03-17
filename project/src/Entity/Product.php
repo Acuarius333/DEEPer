@@ -5,10 +5,14 @@ namespace App\Entity;
 class Product
 {
     public int $id;
-    public string $title;
+    public string $name;
+    public string $type;
+    public string $location;
+    public string $country;
+    public int $views;
     public string $description;
+    public string $keywords;
     public string $imagePath;
-    public ?float $average_rating;
     /** @var CheckIn[] */
     private array $checkIns = [];
 

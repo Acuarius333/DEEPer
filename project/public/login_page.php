@@ -13,7 +13,8 @@ if (isset($_POST['email'], $_POST['password'])) {
         // Logged in
         $_SESSION['loginId'] = $user->id;
         $_SESSION['userName'] = $user->name;
-        header('Location: welcome_page.php');
+        header('location: welcome_page.php');
+
     } else {
         $errorMessage = 'Error: Incorrect details, please try again';
     }

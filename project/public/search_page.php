@@ -1,4 +1,16 @@
 <?php
+
+use App\Entity\Product;
+use App\DataProvider;
+
+require_once '../src/setup.php';
+
+$searchTerm = '';
+if (isset($_POST['search'])) {
+    $searchTerm = $_POST['search'];
+    $_SESSION['searchWord'] = $searchTerm;
+    $stmt = $dbProvider->getProducts($searchTerm);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,87 +20,96 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search</title>
     <link
-            href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
-            rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
+        rel="stylesheet"
     >
     <link rel="stylesheet" href="../src/css/search.css">
 </head>
 
 <body>
-    <header class="viewport-header">
-        <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
-        <nav class="main-nav">
-            <ul class="nav__list">
-                <li>
-                    <a href="#" class="nav__link">About</a>
-                </li>
-                <li>
-                    <a href="#" class="nav__link">Another page</a>
-                </li>
-                <li>
-                    <a href="#" class="nav__link">Pricing</a>
-                </li>
-                <li>
-                    <a href="blog_page.php" class="nav__link">Blog</a>
-                </li>
-            </ul>
-        </nav>
-        <?php if (1==1) : ?>
-            <nav>
-                <ul class="nav__list">
+<header class="viewport-header">
+    <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
+    <nav>
+        <ul class="nav__list">
+            <li style="color: lawngreen">
+                <a href="#" class="nav__link">Wines</a>
+            </li>
+            <li>
+                <a href="#" class="nav__link">Another page</a>
+            </li>
+            <li>
+                <a href="#" class="nav__link">Pricing</a>
+            </li>
+            <li>
+                <a href="blog_page.php" class="nav__link">Blog</a>
+            </li>
+        </ul>
+    </nav>
+    <?php include '../src/php/Templates/signup_login_buttons.php'; ?>
+</header>
 
-                    <li>
-                        <a style="position: absolute; top: 3px; right: 90px;">Hello Francisco</a>
-                    </li>
-                    <li>
-                        <a
-                                class="nav__link nav__link--btn"
-                                href="#"
-                        >Account</a>
-                    </li>
-                    <li>
-                        <a
-                                class="nav__link nav__link--btn nav__link--btn--highlight-logout"
-                                href="#"
-                        >Log out</a
-                        >
-                    </li>
-
-                </ul>
-            </nav>
-        <?php else: ?>
-            <nav>
-                <ul class="nav__list">
-                    <li>
-                        <a
-                                class="nav__link nav__link--btn"
-                                href="register_page.php"
-                        >Sign up</a>
-                    </li>
-                    <li>
-                        <a
-                                class="nav__link nav__link--btn nav__link--btn--highlight-login"
-                                href="#"
-                        >Log in</a
-                        >
-                    </li>
-
-                </ul>
-            </nav>
-        <?php endif; ?>
-    </header>
-
-    <main>
-        <section class="home-intro">
+<main>
+    <form method="post">
+        <div class="home-intro">
             <div class="container">
                 <div class="searchbox">
-                    <input type="text" class="searchbox__input" placeholder="Search..." />
+                    <input type="text" class="searchbox__input" placeholder="Search..." name="search" id="search" autocomplete="off" value="<?= $searchTerm ?>"/>
                     <svg class="searchbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.966 56.966">
                         <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17s-17-7.626-17-17S14.61,6,23.984,6z" />
                     </svg>
                 </div>
             </div>
         </section>
-    </main>
+    </form>
+</main>
+
+<?php if (!empty($_POST['search'])):?>
+    <?php foreach($stmt as $product): ?>
+        <section class="main">
+            <div id="card-container" class="flip-card-container">
+                <div id="card" class="flip-card" align="center">
+                    <div class="card-front">
+                        <figure>
+                            <div class="img-bg"></div>
+                            <img src="../src/Images/reviews/<?= $product->image_path; ?>" alt="">
+                            <figcaption><?= $product->name; ?></figcaption>
+                        </figure>
+
+                        <ul class="card-list">
+                            <li class="card-list-element"><?= $product->id; ?></li>
+                            <li class="card-list-element"><?= $product->type; ?></li>
+                            <li class="card-list-element"><?= $product->country; ?></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-back">
+                        <figure>
+                            <div class="img-bg"></div>
+                            <img src="../src/Images/reviews/<?= $product->image_path; ?>" alt="">
+                        </figure>
+
+                        <button>Find out more</button>
+
+                        <div class="design-container">
+                            <span class="design design--1"></span>
+                            <span class="design design--2"></span>
+                            <span class="design design--3"></span>
+                            <span class="design design--4"></span>
+                            <span class="design design--5"></span>
+                            <span class="design design--6"></span>
+                            <span class="design design--7"></span>
+                            <span class="design design--8"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php endforeach; ?>
+<?php endif;?>
+
+<script src="../src/js/main.js"></script>
 </body>
 </html>
+<script>
+    document.getElementById("search").value = "";
+</script>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,11 +45,11 @@
 <body>
 <header>
     <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
-    <nav class="main-nav">
+    <nav>
         <ul class="nav__list">
 
             <li>
-                <a href="#" class="nav__link">About</a>
+                <a href="search_page.php" class="nav__link">Wines</a>
             </li>
             <li>
                 <a href="#" class="nav__link">Another page</a>
@@ -56,52 +57,12 @@
             <li>
                 <a href="#" class="nav__link">Pricing</a>
             </li>
-            <li>
+            <li style="color: lawngreen">
                 <a href="blog_page.php" class="nav__link">Blog</a>
             </li>
         </ul>
     </nav>
-    <?php if (1==1) : ?>
-        <nav>
-            <ul class="nav__list">
-                <li>
-                    <a style="position: absolute; top: 3px; right: 90px;">Hello Francisco</a>
-                </li>
-                <li>
-                    <a
-                            class="nav__link nav__link--btn"
-                            href="#"
-                    >Account</a>
-                </li>
-                <li>
-                    <a
-                            class="nav__link nav__link--btn nav__link--btn--highlight-logout"
-                            href="#"
-                    >Log out</a
-                    >
-                </li>
-            </ul>
-        </nav>
-    <?php else: ?>
-        <nav>
-            <ul class="nav__list">
-                <li>
-                    <a
-                            class="nav__link nav__link--btn"
-                            href="register_page.php"
-                    >Sign up</a>
-                </li>
-                <li>
-                    <a
-                            class="nav__link nav__link--btn nav__link--btn--highlight-login"
-                            href="#"
-                    >Log in</a
-                    >
-                </li>
-
-            </ul>
-        </nav>
-    <?php endif; ?>
+    <?php include '../src/php/Templates/signup_login_buttons.php'; ?>
 </header>
 
 <main>
@@ -138,7 +99,7 @@
             </div>
 
             <img
-                    src="../src/Images/1.jpg"
+                    src="../src/Images/blog_page/1.jpg"
                     alt=""
                     class="slide-in from-left"
             >
@@ -169,14 +130,14 @@
                 like an Argentine malbec or is it light like a beaujolais?
             </p>
             <img
-                    src="../src/Images/2.jpg"
+                    src="../src/Images/blog_page/2.jpg"
                     alt=""
                     class="slide-in from-right"
             >
         </div>
         <div class="more-stuff-grid">
             <img
-                    src="../src/Images/3.jpg"
+                    src="../src/Images/blog_page/3.jpg"
                     alt=""
                     class="slide-in from-left"
             >
@@ -211,14 +172,14 @@
                 such as sancerre, from the same area.
             </p>
             <img
-                    src="../src/Images/4.jpg"
+                    src="../src/Images/blog_page/4.jpg"
                     alt=""
                     class="slide-in from-right"
             >
         </div>
         <div class="more-stuff-grid">
             <img
-                    src="../src/Images/5.jpg"
+                    src="../src/Images/blog_page/5.jpg"
                     alt=""
                     class="slide-in from-left"
             >

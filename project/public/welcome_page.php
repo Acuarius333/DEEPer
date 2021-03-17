@@ -18,11 +18,11 @@ session_start();
 <body>
     <header>
         <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
-        <nav class="main-nav">
+        <nav>
             <ul class="nav__list">
 
                 <li>
-                    <a href="#" class="nav__link">About</a>
+                    <a href="search_page.php" class="nav__link">Wines</a>
                 </li>
                 <li>
                     <a href="#" class="nav__link">Another page</a>
@@ -35,48 +35,7 @@ session_start();
                 </li>
             </ul>
         </nav>
-
-        <?php if(isset($_SESSION ['loginId'])): ?>
-            <nav>
-                <ul class="nav__list">
-                    <li>
-                        <a style="position: absolute; top: 3px; left: 1163px;">Hello <?php echo $_SESSION ['userName']; ?></a>
-                    </li>
-                    <li>
-                        <a
-                                class="nav__link nav__link--btn"
-                                href="#"
-                        >Account</a>
-                    </li>
-                    <li>
-                        <a
-                                class="nav__link nav__link--btn nav__link--btn--highlight-logout"
-                                href="../src/php/logout.php"
-                        >Log out</a
-                        >
-                    </li>
-                </ul>
-            </nav>
-        <?php else: ?>
-            <nav>
-                <ul class="nav__list">
-                        <li>
-                            <a
-                                class="nav__link nav__link--btn"
-                                href="register_page.php"
-                            >Sign up</a>
-                        </li>
-                        <li>
-                            <a
-                                class="nav__link nav__link--btn nav__link--btn--highlight-login"
-                                href="login_page.php"
-                            >Log in</a
-                            >
-                        </li>
-
-                </ul>
-            </nav>
-        <?php endif;?>
+        <?php include '../src/php/Templates/signup_login_buttons.php'; ?>
     </header>
 
     <main>

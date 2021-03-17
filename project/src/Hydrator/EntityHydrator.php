@@ -13,10 +13,15 @@ class EntityHydrator
     {
         $product = new Product();
         $product->id = $data['id'];
-        $product->title = $data['title'];
+        $product->name = $data['name'];
+        $product->type = $data['type'];
+        $product->location = $data['location'];
+        $product->country = $data['country'];
         $product->description = $data['description'];
+        $product->views = $data['views'];
+        $product->keywords = $data['keywords'];
         $product->imagePath = $data['image_path'];
-        $product->average_rating = $data['average_rating'];
+
 
         return $product;
     }

@@ -59,7 +59,7 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPa
                 <div class="wthree-text">
                     <label class="anim">
                         <input type="checkbox" class="checkbox" required="">
-                        <span>I Agree To The <a class="messageLink" href="ts&cs_page.php"> Terms & Conditions</a></span>
+                        <span>I Agree To The <a class="messageLink" href="ts&cs_page.php" target="_blank"> Terms & Conditions</a></span>
                     </label>
                     <div class="clear"> </div>
                 </div>
