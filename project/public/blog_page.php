@@ -14,31 +14,7 @@ session_start();
     >
     <link rel="stylesheet" href="../src/css/blog.css">
 
-    <script src="jquery-3.5.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-<script>
-    function getData () {
-        const apikey = "1bd5bb2e4bc742eead26e6911f8f8195"
-        const urlData = `https://api.spoonacular.com/food/products/search?query=wine&apiKey=${apikey}`
-        console.log(">>")
-        const urlById = `https://api.spoonacular.com/recipes/431332/?apikey=1bd5bb2e4bc742eead26e6911f8f8195`
-
-        $.ajax({
-            dataType: "json",
-            url: urlData,
-
-            success: function (data) {
-                console.log(data)
-            }
-        })
-
-
-    };
-
-    getData()
-</script>
 
 </head>
 
@@ -55,9 +31,9 @@ session_start();
                 <a href="#" class="nav__link">Another page</a>
             </li>
             <li>
-                <a href="#" class="nav__link">Pricing</a>
+                <a href="#" class="nav__link">Another page</a>
             </li>
-            <li style="color: lawngreen">
+            <li style="color: #7dd96e">
                 <a href="blog_page.php" class="nav__link">Blog</a>
             </li>
         </ul>

@@ -32,16 +32,41 @@ class DatabaseProvider
 
     public function getProducts(string $searchTerm): array
     {
-        $stmt = $this->dbh->prepare(
-            'SELECT 
+        if (strstr($searchTerm, ' ')) {
+            $searchTerms = explode(' ', $searchTerm);
+            $sql = 'SELECT 
+                      id, name, type, country, location, description, views, image_path 
+                      FROM product 
+                      WHERE (';
+
+            for ($i = 1; $i <= count($searchTerms); $i++) {
+                $sql .= ' keywords LIKE :term' . $i . ' AND ';
+            }
+            $sql = substr($sql, 0, -4) . ')';
+
+            $stmt = $this->dbh->prepare($sql);
+
+            for ($i = 0; $i < count($searchTerms); $i++) {
+                $term = '%' . $searchTerms[$i] . '%';
+                $stmt->bindValue(':term' . ($i+1), $term, PDO::PARAM_STR);
+            }
+            $stmt->execute();
+            ob_start();
+            $stmt->debugDumpParams();
+            $dump = ob_get_clean();
+        } else {
+            $stmt = $this->dbh->prepare(
+                'SELECT 
                       id, name, type, country, location, description, views, image_path 
                       FROM product 
                       WHERE keywords 
                       LIKE :searchTerm');
 
-        $stmt->execute([
-            'searchTerm' => '%' . $searchTerm . '%'
-        ]);
+            $stmt->execute([
+                'searchTerm' => '%' . $searchTerm . '%'
+            ]);
+        }
+
         return $stmt->fetchAll(PDO::FETCH_CLASS, Product::class);
     }
 

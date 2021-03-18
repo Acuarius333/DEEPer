@@ -9,8 +9,8 @@ $searchTerm = '';
 if (isset($_POST['search'])) {
     $searchTerm = $_POST['search'];
     $_SESSION['searchWord'] = $searchTerm;
-    $stmt = $dbProvider->getProducts($searchTerm);
 }
+$stmt = $dbProvider->getProducts(trim($searchTerm));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +31,14 @@ if (isset($_POST['search'])) {
     <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
     <nav>
         <ul class="nav__list">
-            <li style="color: lawngreen">
+            <li style="color: #7dd96e">
                 <a href="#" class="nav__link">Wines</a>
             </li>
             <li>
                 <a href="#" class="nav__link">Another page</a>
             </li>
             <li>
-                <a href="#" class="nav__link">Pricing</a>
+                <a href="#" class="nav__link">Another page</a>
             </li>
             <li>
                 <a href="blog_page.php" class="nav__link">Blog</a>
@@ -67,7 +67,7 @@ if (isset($_POST['search'])) {
     <?php foreach($stmt as $product): ?>
         <section class="main">
             <div id="card-container" class="flip-card-container">
-                <div id="card" class="flip-card" align="center">
+                <div id="card" class="flip-card">
                     <div class="card-front">
                         <figure>
                             <div class="img-bg"></div>

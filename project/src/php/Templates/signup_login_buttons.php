@@ -2,7 +2,7 @@
     <nav>
         <ul class="nav__list">
             <li>
-                <a style="position: absolute; top: 3px; left: 1163px;">Hello <?php echo $_SESSION ['userName']; ?></a>
+                <a style="position: absolute; top: 3px; left: 1163px;">Hello <span style="color: #7dd96e"><?php echo $_SESSION ['userName']; ?></span></a>
             </li>
             <li>
                 <a

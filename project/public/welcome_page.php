@@ -28,7 +28,7 @@ session_start();
                     <a href="#" class="nav__link">Another page</a>
                 </li>
                 <li>
-                    <a href="#" class="nav__link">Pricing</a>
+                    <a href="#" class="nav__link">Another page</a>
                 </li>
                 <li>
                     <a href="blog_page.php" class="nav__link">Blog</a>
@@ -40,6 +40,7 @@ session_start();
 
     <main>
         <section class="home-intro">
+            <img style="filter: brightness(150%); height: 100px; width: 100px; margin-top: -150px; position: relative; display: inline-block" src="../src/Images/ideas/grapes.png" alt="">
             <h1>OneUp Wine</h1>
         </section>
 

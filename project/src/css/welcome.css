@@ -89,8 +89,8 @@ header {
 }
 
 .nav__link--btn--highlight-login {
-    background: limegreen;
-    border-color: limegreen;
+    background: #7dd96e;
+    border-color: #7dd96e;
     color: #333;
 }
 

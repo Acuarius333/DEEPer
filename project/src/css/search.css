@@ -93,8 +93,8 @@ header {
 }
 
 .nav__link--btn--highlight-login {
-    background: limegreen;
-    border-color: limegreen;
+    background: #7dd96e;
+    border-color: #7dd96e;
     color: #333;
 }
 
@@ -225,7 +225,7 @@ header {
     pointer-events: none;
 }
 .container .searchbox .searchbox__icon path {
-    fill: #00F494;
+    fill: #7dd96e;
     transition: 0.4s linear;
 }
 .container .searchbox:focus-within {
@@ -434,7 +434,7 @@ button:hover,
 button:focus {
     color: white;
     background: hsla(var(--hue), 25%, 10%, .2);
-    border-color: limegreen;
+    border-color: #7dd96e;
 }
 
 button:active {
