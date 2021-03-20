@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>OneUp Wine</title>
+    <title>OneUp Wine-Welcome!</title>
     <link
             href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
             rel="stylesheet"
@@ -22,7 +22,7 @@ session_start();
             <ul class="nav__list">
 
                 <li>
-                    <a href="search_page.php" class="nav__link">Wines</a>
+                    <a href="search_page.php" class="nav__link">Find your wine</a>
                 </li>
                 <li>
                     <a href="#" class="nav__link">Another page</a>
@@ -40,7 +40,7 @@ session_start();
 
     <main>
         <section class="home-intro">
-            <img style="filter: brightness(150%); height: 100px; width: 100px; margin-top: -150px; position: relative; display: inline-block" src="../src/Images/ideas/grapes.png" alt="">
+            <img style="height: 100px; width: 100px; margin-top: -150px; position: relative; display: inline-block" src="../src/Images/icon/grapes.png" alt="">
             <h1>OneUp Wine</h1>
         </section>
 

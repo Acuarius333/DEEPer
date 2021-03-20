@@ -12,16 +12,18 @@ if (isset($_POST['search'])) {
 }
 $stmt = $dbProvider->getProducts(trim($searchTerm));
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Search</title>
+    <title>OneUp Wine-Wines</title>
     <link
-        href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
-        rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
+            rel="stylesheet"
     >
     <link rel="stylesheet" href="../src/css/search.css">
 </head>
@@ -29,10 +31,12 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
 <body>
 <header class="viewport-header">
     <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
+    <img style="z-index: -1; height: 70px; width: 70px; margin-left: 15px; margin-top: 77px; position: absolute; display: block;" src="../src/Images/icon/grapes.png" alt="">
+
     <nav>
         <ul class="nav__list">
-            <li style="color: #7dd96e">
-                <a href="#" class="nav__link">Wines</a>
+            <li style="color: #32CD32">
+                <a href="#" class="nav__link">Find your wine</a>
             </li>
             <li>
                 <a href="#" class="nav__link">Another page</a>
@@ -64,47 +68,51 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
 </main>
 
 <?php if (!empty($_POST['search'])):?>
-    <?php foreach($stmt as $product): ?>
-        <section class="main">
-            <div id="card-container" class="flip-card-container">
-                <div id="card" class="flip-card">
-                    <div class="card-front">
-                        <figure>
-                            <div class="img-bg"></div>
-                            <img src="../src/Images/reviews/<?= $product->image_path; ?>" alt="">
-                            <figcaption><?= $product->name; ?></figcaption>
-                        </figure>
+    <?php if ($stmt):?>
+        <?php foreach($stmt as $product): ?>
+            <section class="main">
+                <div id="card-container" class="flip-card-container">
+                    <div id="card" class="flip-card">
+                        <div class="card-front">
+                            <figure>
+                                <div class="img-bg"></div>
+                                <img src="../src/Images/reviews/<?= $product->image_path; ?>" alt="">
+                                <figcaption><?= $product->product_name; ?></figcaption>
+                            </figure>
 
-                        <ul class="card-list">
-                            <li class="card-list-element"><?= $product->id; ?></li>
-                            <li class="card-list-element"><?= $product->type; ?></li>
-                            <li class="card-list-element"><?= $product->country; ?></li>
-                        </ul>
-                    </div>
+                            <ul class="card-list">
+                                <li class="card-list-element"><?= $product->id; ?></li>
+                                <li class="card-list-element"><?= $product->type; ?></li>
+                                <li class="card-list-element"><?= $product->country; ?></li>
+                            </ul>
+                        </div>
 
-                    <div class="card-back">
-                        <figure>
-                            <div class="img-bg"></div>
-                            <img src="../src/Images/reviews/<?= $product->image_path; ?>" alt="">
-                        </figure>
+                        <div class="card-back">
+                            <figure>
+                                <div class="img-bg"></div>
+                                <img src="../src/Images/reviews/<?= $product->image_path; ?>" alt="">
+                            </figure>
 
-                        <button>Find out more</button>
+                            <button onclick="window.open('product_page.php?productId=<?= $product->id; ?>')">Find out more</button>
 
-                        <div class="design-container">
-                            <span class="design design--1"></span>
-                            <span class="design design--2"></span>
-                            <span class="design design--3"></span>
-                            <span class="design design--4"></span>
-                            <span class="design design--5"></span>
-                            <span class="design design--6"></span>
-                            <span class="design design--7"></span>
-                            <span class="design design--8"></span>
+                            <div class="design-container">
+                                <span class="design design--1"></span>
+                                <span class="design design--2"></span>
+                                <span class="design design--3"></span>
+                                <span class="design design--4"></span>
+                                <span class="design design--5"></span>
+                                <span class="design design--6"></span>
+                                <span class="design design--7"></span>
+                                <span class="design design--8"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    <?php endforeach; ?>
+            </section>
+        <?php endforeach; ?>
+    <?php else:?>
+        <p style="margin-top: -300px; margin-left: 634px"><span style="color: limegreen">Oops! </span><span style="color: white">No results found</span></</p>
+    <?php endif;?>
 <?php endif;?>
 
 <script src="../src/js/main.js"></script>

@@ -35,7 +35,7 @@ class DatabaseProvider
         if (strstr($searchTerm, ' ')) {
             $searchTerms = explode(' ', $searchTerm);
             $sql = 'SELECT 
-                      id, name, type, country, location, description, views, image_path 
+                      id, product_name, type, country, location, description, views, image_path 
                       FROM product 
                       WHERE (';
 
@@ -57,7 +57,7 @@ class DatabaseProvider
         } else {
             $stmt = $this->dbh->prepare(
                 'SELECT 
-                      id, name, type, country, location, description, views, image_path 
+                      id, product_name, type, country, location, description, views, image_path 
                       FROM product 
                       WHERE keywords 
                       LIKE :searchTerm');
@@ -70,31 +70,14 @@ class DatabaseProvider
         return $stmt->fetchAll(PDO::FETCH_CLASS, Product::class);
     }
 
-    public function getProductsByType(string $searchTerm): array
-    {
-        $stmt = $this->dbh->prepare(
-            'SELECT 
-                      id, name, type, country, location, description, views, image_path 
-                      FROM product 
-                      WHERE keywords 
-                      LIKE :searchTerm
-                      ORDER BY type ASC');
-
-        $stmt->execute([
-            'searchTerm' => '%' . $searchTerm . '%'
-        ]);
-
-        return $stmt->fetchAll(PDO::FETCH_CLASS, Product::class);
-    }
-
     public function getProduct(int $productId): ?Product
     {
         $stmt = $this->dbh->prepare(
-            'SELECT
-            p.id AS product_id, p.title, p.description, p.image_path,
-            c.id, c.name, c.rating, c.review, c.posted,
+            'SELECT 
+            p.id AS id, p.product_name, p.type, p.description, p.image_path, p.location, p.country, p.views, p.keywords,
+            c.id, c.name, c.user_id, c.rating, c.review, c.submitted, c.product_id,
             (
-                SELECT AVG(checkin.rating) FROM checkin WHERE product_id = p.id
+                SELECT AVG(checkin.rating) AS average_rating FROM checkin WHERE product_id = p.id
             ) as average_rating
             FROM product AS p
             LEFT JOIN checkin c ON c.product_id = p.id
@@ -105,9 +88,22 @@ class DatabaseProvider
         ]);
 
         $productAndCheckInData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         $hydrator = new EntityHydrator();
         return $hydrator->hydrateProductWithCheckIns($productAndCheckInData);
+    }
+
+    public function upgradeViews(int $productId): ?Product
+    {
+        $stmt = $this->dbh->prepare(
+            'UPDATE `product` 
+                        SET views = views + 1 
+                        WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $productId
+        ]);
+        return null;
     }
 
     public function createProduct(Product $product): Product
@@ -130,7 +126,7 @@ class DatabaseProvider
     public function getCheckIn(int $checkInId): ?CheckIn
     {
         $stmt = $this->dbh->prepare(
-            'SELECT id, product_id, name, rating, review, posted
+            'SELECT id, product_id, user_id, name, rating, review, submitted
             FROM checkin
             WHERE id = :id'
         );

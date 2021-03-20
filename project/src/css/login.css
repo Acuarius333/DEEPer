@@ -104,12 +104,15 @@ body {
 }
 
 .site-logo {
+    --textLogo: limegreen;
+    --textLogo-inverse: #333;
     font-weight: 900;
     font-size: 0.8rem;
-    color: #262626;
-    margin: 4em;
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
+    color: var(--textLogo);
+    text-decoration: none;
+    margin-top: -27px;
+    margin-left: 48px;
+    position: absolute;
 }
 
 h1 {

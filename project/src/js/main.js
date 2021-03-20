@@ -1,6 +1,6 @@
     const header = document.querySelector("header");
+    const siteLogo = document.querySelector(".site-logo");
     const sectionOne = document.querySelector(".home-intro");
-
     const faders = document.querySelectorAll(".fade-in");
     const sliders = document.querySelectorAll(".slide-in");
 
@@ -15,8 +15,10 @@
     entries.forEach(entry => {
         if (!entry.isIntersecting) {
             header.classList.add("nav-scrolled");
+            siteLogo.classList.add("logo-scrolled");
         } else {
             header.classList.remove("nav-scrolled");
+            siteLogo.classList.remove("logo-scrolled");
         }
     });
 },
@@ -51,8 +53,6 @@
     sliders.forEach(slider => {
         appearOnScroll.observe(slider);
     });
-
-
 
 
 

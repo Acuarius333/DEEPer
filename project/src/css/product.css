@@ -10,17 +10,7 @@ body {
     font-weight: 900;
     font-size: 0.8rem;
     color: var(--textLogo);
-    text-decoration: none;
-}
-
-.site-icon {
-    z-index: -1;
-    height: 70px;
-    width: 70px;
-    margin-left: 15px;
-    margin-top: 77px;
-    position: absolute;
-    display: block;
+    text-decoration: none;!
 }
 
 header {
@@ -119,6 +109,8 @@ header {
 }
 
 .nav-scrolled {
+    --textLogo: #333;
+    --textLogo-inverse: limegreen;
     --text: #333;
     --text-inverse: #f4f4f4;
     --background: #f4f4f4;
@@ -135,9 +127,11 @@ header {
 
 .home-intro {
     padding: 50vh 0;
-    background: radial-gradient(ellipse, #ec0598, #cb1539), url(https://images.pexels.com/photos/3756623/pexels-photo-3756623.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
-    background-size: cover;
+    background: radial-gradient(ellipse, #ec0598, #cb1539), url("https://images.westend61.de/0000732744pw/red-wine-splashing-in-glass-in-front-of-white-background-CPF000031.jpg");
+    background-size: auto;
+    background-position: center;
     background-blend-mode: multiply;
+    position: -webkit-sticky;
     color: white;
     text-align: center;
 }
@@ -195,4 +189,104 @@ header {
 
 .fade-in.appear {
     opacity: 1;
+}
+
+.mapFrame
+{
+    border-style: solid;
+    border-width: 6px;
+    border-color: #ffffff;
+    box-shadow: 0px 0px 10px #000000;
+    margin: auto;
+    border-radius: 80px;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+.tabset > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+
+}
+
+.tabset .tab-panel {
+    display: none;
+
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+}
+
+
+
+.tabset > label {
+    position: relative;
+    display: inline-block;
+    padding: 15px 15px 25px 25px;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    cursor: pointer;
+
+}
+
+.tabset > label::after {
+    content: "";
+    position: absolute;
+    left: 25px;
+    bottom: 20px;
+    width: 22px;
+    height: 2px;
+    background: #8d8d8d;
+}
+
+.tabset > label:hover,
+.tabset > input:focus + label {
+    color: limegreen;
+}
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+    background: limegreen;
+}
+
+.tabset > input:checked + label {
+    border-color: #ccc;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+}
+
+.tab-panel {
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+}
+
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+
+.tabset {
+    max-width: 100em;
+    background: #f4f4f4;
 }

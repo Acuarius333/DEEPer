@@ -103,24 +103,27 @@ img {
 /*-- end reset --*/
 body {
 
-    background: #771d31;
+    background: #cb1539;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #771d31, #e95353);
-    background: -moz-linear-gradient(to top, #771d31, #e95353);
-    background: -o-linear-gradient(to top, #771d31, #e95353);
-    background: linear-gradient(to top, #771d31, #e95353);
+    background: -webkit-repeating-radial-gradient(ellipse, #cb1539, #ec0598);
+    background: -moz-repeating-radial-gradient(ellipse, #cb1539, #ec0598);
+    background: -o-repeating-radial-gradient(ellipse, #cb1539, #ec0598);
+    background: repeating-radial-gradient(ellipse, #cb1539, #ec0598);
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Poppins', sans-serif;
 }
 
 .site-logo {
+    --textLogo: limegreen;
+    --textLogo-inverse: #333;
     font-weight: 900;
     font-size: 0.8rem;
-    color: #FFFFFF;
-    margin: 4em;
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
+    color: var(--textLogo);
+    text-decoration: none;
+    margin-top: -27px;
+    margin-left: 48px;
+    position: absolute;
 }
 
 h1 {
@@ -273,7 +276,7 @@ input[type="submit"]:hover {
 }
 
 .agileits-top p a:hover {
-    color: #F4845F;
+    color: limegreen;
 }
 
 .messageLink {
@@ -288,7 +291,7 @@ input[type="submit"]:hover {
 }
 
 .messageLink:hover {
-    color: #F4845F;
+    color: limegreen;
 }
 
 /*-- //main --*/

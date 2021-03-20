@@ -4,8 +4,8 @@ namespace App\Entity;
 
 class Product
 {
-    public int $id;
-    public string $name;
+    public ?int $id;
+    public string $productName;
     public string $type;
     public string $location;
     public string $country;
@@ -13,6 +13,7 @@ class Product
     public string $description;
     public string $keywords;
     public string $imagePath;
+    public ?string $averageRating;
     /** @var CheckIn[] */
     private array $checkIns = [];
 
