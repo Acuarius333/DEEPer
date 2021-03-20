@@ -7,6 +7,7 @@ use App\Entity\Product;
 use App\Entity\User;
 use App\Hydrator\EntityHydrator;
 use PDO;
+use Carbon\Carbon;
 
 class DatabaseProvider
 {

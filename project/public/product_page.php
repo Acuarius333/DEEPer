@@ -7,11 +7,13 @@ use App\DataProvider;
 require_once '../src/setup.php';
 
 $productId = $_GET['productId'];
-
 $stmt = $dbProvider->getProduct($productId);
 $views = $dbProvider->upgradeViews($productId);
 $checkIn = $stmt->getCheckins();
-$averageRating = round($stmt->averageRating, 2)
+
+$averageRating = 0;
+$averageRating = round($stmt->averageRating, 2);
+
 ?>
 
 <!DOCTYPE html>
@@ -61,9 +63,7 @@ $averageRating = round($stmt->averageRating, 2)
     <a style="z-index: 1; font-variant: small-caps; position: absolute; margin-top: -400px; margin-left: 250px; color: #f4f4f4; font-size: 70px;"><?= $stmt->productName ?></a>
     <a style="opacity: 60%; z-index: 2; font-variant: small-caps; position: absolute; margin-top: -400px; margin-left: 250px; color: limegreen; font-size: 130px;"><?= $stmt->country ?></a>
 
-
     <div class="tabset">
-
         <input type="radio" name="tabset" id="tab1" aria-controls="1" checked>
         <label for="tab1">Overview</label>
 
@@ -75,56 +75,82 @@ $averageRating = round($stmt->averageRating, 2)
 
         <div class="tab-panels">
             <section id="1" class="tab-panel">
-                <div class="more-stuff-grid">
-                    <img class="slide-in from-left" src="../src/Images/reviews/<?= $stmt->imagePath ?>" alt="">
-                    <p class="slide-in from-right">
-                        <?= $stmt->description ?>
-                    </p>
-                </div>
+                <img style="margin-left: 2em; height: 600px; width: 700px" src="../src/Images/reviews/<?= $stmt->imagePath ?>" alt="">
+                <p style="width: 500px; margin-left: 850px; position: absolute; margin-top: -500px; text-align: justify">
+                    <?= $stmt->description ?>
+                </p>
             </section>
+
             <section id="2" class="tab-panel">
+                <?php if (!empty($checkIn)): ?>
+                    <?php $a=0; $b=0; $c=0; $d=0; $e=0;?>
+                        <?php foreach($checkIn as $checkIns): ?>
+                            <?php
 
-                <?php if (!empty($averageRating)): ?>
-                    <h3>Average rating: <?php echo $averageRating ?></h3>
-                <?php else:?>
-                    <h3>Average rating: No ratings yet</h3>
+                            if (($checkIns->rating)==5){
+                                $a++;
+                            };
+                            if (($checkIns->rating)==4){
+                                $b++;
+                            };
+                            if (($checkIns->rating)==3){
+                                $c++;
+                            };
+                            if (($checkIns->rating)==2){
+                                $d++;
+                            };
+                            if (($checkIns->rating)==1) {
+                                $e++;} ?>
+
+                            <div style="margin-left: 2em">
+                                <div class="blog-card">
+                                    <div class="meta">
+                                        <img class="photo" src="../src/Images/icon/woman.jpg">
+                                    </div>
+                                    <div class="description">
+                                        <a class="link" href="blog_page.php" style="text-decoration: none"><h1><?= $checkIns->name ?></h1></a>
+                                        <?php include '../src/php/Templates/stars_rating.php'; ?>
+                                        <h2><?= $checkIns->submitted ?></h2>
+                                        <p><?= $checkIns->review ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach;?>
+                        <?php
+                        $total = ($a+$b+$c+$d+$e);
+                        $aValue = (100/$total*$a);
+                        $bValue = (100/$total*$b);
+                        $cValue = (100/$total*$c);
+                        $dValue = (100/$total*$d);
+                        $eValue = (100/$total*$e);
+                        ?>
+
+                    <?php include '../src/php/Templates/rating_bars.php'; ?>
+
+                <?php else: ?>
+                    <tr>
+                        <td>No reviews yet</td>
+                    </tr>
                 <?php endif;?>
+                
+                <?php if ($averageRating>=1): ?>
+                    <?php include '../src/php/Templates/stars_average_rating.php';?>
+                    <a style="margin-left: 800px; margin-top: -450px; position: absolute; color: #a2a2a2">Average rating: <?php echo $averageRating ?></a>
+                    <a style="margin-left: 800px; margin-top: -350px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 255px; color: limegreen">'.$stmt->views).'</span>' ?></a>
+                <?php else:?>
+                    <a>Average rating: No ratings yet</a>
+                    <a style="margin-left: 800px; margin-top: -50px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 255px; color: limegreen">'.$stmt->views).'</span>' ?></a>
+                <?php endif;?>
+                    </section>
 
-                <h3>Views: <?= $stmt->views ?></h3>
+                    <section id="3" class="tab-panel">
+                        <div class="mapFrame">
+                            <iframe width="300" height="300" style="border: none" allowfullscreen src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCULQ0LqKq3I5tNKaObSq4oyS5lh_tI6BE&center=<?= $stmt->location ?>&zoom=14&maptype=satellite"></iframe>
+                        </div>
+                    </section>
 
-                <table>
-                    <?php if (!empty($checkIn)): ?>
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Rating</th>
-                            <th>Review</th>
-                        </tr>
-                        </thead>
-                        <?php foreach( $checkIn as $checkIns): ?>
-                            <tbody>
-                            <tr>
-                                <td><?= $checkIns->name ?></td>
-                                <td><?= $checkIns->rating ?></td>
-                                <td><?= $checkIns->review ?></td>
-                            </tr>
-                            </tbody>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td>No reviews yet</td>
-                        </tr>
-                    <?php endif; ?>
-                </table>
-            </section>
-            <section id="3" class="tab-panel">
-                <div class="mapFrame">
-                    <iframe width="300" height="300" style="border: none" allowfullscreen src="https://www.google.com/maps/embed/v1/view
-?key=AIzaSyCULQ0LqKq3I5tNKaObSq4oyS5lh_tI6BE&center=<?= $stmt->location ?>&zoom=14&maptype=satellite"></iframe>
                 </div>
-            </section>
-        </div>
-    </div>
+            </div>
 
     <script src="../src/js/main.js"></script>
 </body>
