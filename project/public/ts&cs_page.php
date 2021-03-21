@@ -17,7 +17,7 @@
 <body>
 <header>
     <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
-    <img style="z-index: -1; height: 70px; width: 70px; margin-left: 15px; margin-top: 77px; position: absolute; display: block;" src="../src/Images/icon/grapes.png" alt="">
+    <img style="z-index: -1; height: 70px; width: 70px; margin-left: 15px; margin-top: 77px; position: absolute; display: block;" src="../src/Images/icons/grapes.png" alt="">
 
 </header>
 

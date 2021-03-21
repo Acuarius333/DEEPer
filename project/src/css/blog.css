@@ -130,7 +130,7 @@ header {
     --textLogo-inverse: limegreen;
     --text: #333;
     --text-inverse: #f4f4f4;
-    --background: #f4f4f4;
+    --background: #454444;
 }
 
 .home-intro {
@@ -143,7 +143,7 @@ header {
 }
 
 .home-about {
-    padding: 4em 0;
+    padding: 2em 0;
     max-width: 900px;
     margin: 0 auto;
 }
@@ -157,7 +157,7 @@ header {
 }
 
 .more-stuff-grid {
-    background: #f4f4f4;
+    background: #2a2a2a;
     padding: 2em 0;
     display: grid;
     grid-gap: 2em;
@@ -186,6 +186,7 @@ header {
 .from-right.appear {
     transform: translateX(0);
     opacity: 1;
+    color: #FFFFFF;
 }
 
 .fade-in {

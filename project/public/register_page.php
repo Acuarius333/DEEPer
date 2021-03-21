@@ -47,7 +47,7 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPa
 <br>
 <br>
 <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
-<img style="z-index: -1; height: 70px; width: 70px; margin-left: 65px; margin-top: -15px; position: absolute; display: block;" src="../src/Images/icon/grapes.png" alt="">
+<img style="z-index: -1; height: 70px; width: 70px; margin-left: 65px; margin-top: -15px; position: absolute; display: block;" src="../src/Images/icons/grapes.png" alt="">
 <div class="main-w3layouts wrapper">
     <h1>Sign Up</h1>
     <div style="margin-top: 20px" class="main-agileinfo">

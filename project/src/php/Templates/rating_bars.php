@@ -1,6 +1,6 @@
 <?php ?>
 
-<div class="ratingBars" style="position: absolute; display: block; margin-left: 800px; margin-top: -650px" >
+<div class="ratingBars" style="position: absolute; display: block; margin-left: 800px; margin-top: 200px" >
     <div class="row">
         <div class="data" style="color: #a2a2a2">
             <div>5 stars</div>

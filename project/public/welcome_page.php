@@ -40,7 +40,7 @@ session_start();
 
     <main>
         <section class="home-intro">
-            <img style="height: 100px; width: 100px; margin-top: -150px; position: relative; display: inline-block" src="../src/Images/icon/grapes.png" alt="">
+            <img style="height: 100px; width: 100px; margin-top: -150px; position: relative; display: inline-block" src="../src/Images/icons/grapes.png" alt="">
             <h1>OneUp Wine</h1>
         </section>
 

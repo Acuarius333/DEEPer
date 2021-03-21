@@ -145,15 +145,17 @@ class DatabaseProvider
     public function createCheckin(CheckIn $checkIn): CheckIn
     {
         $stmt = $this->dbh->prepare('
-        INSERT INTO checkin (name, rating, review, product_id)
-        VALUE (:name, :rating, :review, :productId)
+        INSERT INTO checkin (name, rating, review, product_id, user_id, submitted)
+        VALUE (:name, :rating, :review, :productId, :userId, :submitted)
         ');
 
         $stmt->execute([
             'name' => $checkIn->name,
             'rating' => $checkIn->rating,
             'review' => $checkIn->review,
-            'productId' => $checkIn->productId
+            'productId' => $checkIn->productId,
+            'userId' => $checkIn->userId,
+            'submitted' => $checkIn->submitted
         ]);
 
         $lastInsertId = $this->dbh->lastInsertId();

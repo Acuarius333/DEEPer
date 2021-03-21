@@ -234,6 +234,7 @@ header {
     max-width: 100em;
     background: #2a2a2a;
     color: #FFFFFF;
+    padding-bottom: 200px;
 }
 
 .blog-card {

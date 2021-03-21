@@ -14,6 +14,7 @@ $checkIn = $stmt->getCheckins();
 $averageRating = 0;
 $averageRating = round($stmt->averageRating, 2);
 
+$_SESSION['productId'] = $productId;
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@ $averageRating = round($stmt->averageRating, 2);
 <body>
 <header>
     <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
-    <img style="z-index: -1; height: 70px; width: 70px; margin-left: 15px; margin-top: 77px; position: absolute; display: block;" src="../src/Images/icon/grapes.png" alt="">
+    <img style="z-index: -1; height: 70px; width: 70px; margin-left: 15px; margin-top: 77px; position: absolute; display: block;" src="../src/Images/icons/grapes.png" alt="">
 
     <nav>
         <ul class="nav__list">
@@ -75,13 +76,24 @@ $averageRating = round($stmt->averageRating, 2);
 
         <div class="tab-panels">
             <section id="1" class="tab-panel">
-                <img style="margin-left: 2em; height: 600px; width: 700px" src="../src/Images/reviews/<?= $stmt->imagePath ?>" alt="">
-                <p style="width: 500px; margin-left: 850px; position: absolute; margin-top: -500px; text-align: justify">
+                <img style="box-shadow: 10px 10px 5px #181717; margin-left: 2em; height: 600px; width: 700px" src="../src/Images/reviews/<?= $stmt->imagePath ?>" alt="">
+                <?php include '../src/php/Templates/flavour_icons.php'; ?>
+                <p style="width: 500px; margin-left: 830px; position: absolute; margin-top: -500px; text-align: justify">
                     <?= $stmt->description ?>
                 </p>
             </section>
 
             <section id="2" class="tab-panel">
+                <?php if ($averageRating>=1): ?>
+                    <?php include '../src/php/Templates/stars_average_rating.php';?>
+                    <a style="margin-left: 800px; margin-top: 30px; position: absolute; color: #a2a2a2">Average rating: <?php echo $averageRating ?></a>
+                    <a style="margin-left: 800px; margin-top: 100px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 170px; color: limegreen">'.$stmt->views).'</span>' ?></a>
+                <?php else:?>
+                    <a href="checkin_form.php">Make a review now</a>
+                    <a>Average rating: No ratings yet</a>
+                    <a style="margin-left: 800px; margin-top: -50px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 255px; color: limegreen">'.$stmt->views).'</span>' ?></a>
+                <?php endif;?>
+
                 <?php if (!empty($checkIn)): ?>
                     <?php $a=0; $b=0; $c=0; $d=0; $e=0;?>
                         <?php foreach($checkIn as $checkIns): ?>
@@ -101,46 +113,40 @@ $averageRating = round($stmt->averageRating, 2);
                             };
                             if (($checkIns->rating)==1) {
                                 $e++;} ?>
+                            <?php endforeach;?>
+                            <?php
+                            $total = ($a+$b+$c+$d+$e);
+                            $aValue = (100/$total*$a);
+                            $bValue = (100/$total*$b);
+                            $cValue = (100/$total*$c);
+                            $dValue = (100/$total*$d);
+                            $eValue = (100/$total*$e);
+                            ?>
 
-                            <div style="margin-left: 2em">
-                                <div class="blog-card">
-                                    <div class="meta">
-                                        <img class="photo" src="../src/Images/icon/woman.jpg">
-                                    </div>
-                                    <div class="description">
-                                        <a class="link" href="blog_page.php" style="text-decoration: none"><h1><?= $checkIns->name ?></h1></a>
-                                        <?php include '../src/php/Templates/stars_rating.php'; ?>
-                                        <h2><?= $checkIns->submitted ?></h2>
-                                        <p><?= $checkIns->review ?></p>
-                                    </div>
+                            <?php include '../src/php/Templates/rating_bars.php'; ?>
+
+                    <?php foreach($checkIn as $checkIns): ?>
+                        <div style="margin-left: 2em">
+                            <div class="blog-card">
+                                <div class="meta">
+                                    <img class="photo" src="../src/Images/icons/woman.jpg">
+                                </div>
+                                <div class="description">
+                                    <a class="link" href="blog_page.php" style="text-decoration: none"><h1><?= $checkIns->name ?></h1></a>
+                                    <?php include '../src/php/Templates/stars_rating.php'; ?>
+                                    <h2><?= $checkIns->submitted ?></h2>
+                                    <p><?= $checkIns->review ?></p>
                                 </div>
                             </div>
-                        <?php endforeach;?>
-                        <?php
-                        $total = ($a+$b+$c+$d+$e);
-                        $aValue = (100/$total*$a);
-                        $bValue = (100/$total*$b);
-                        $cValue = (100/$total*$c);
-                        $dValue = (100/$total*$d);
-                        $eValue = (100/$total*$e);
-                        ?>
-
-                    <?php include '../src/php/Templates/rating_bars.php'; ?>
+                        </div>
+                    <?php endforeach;?>
 
                 <?php else: ?>
                     <tr>
                         <td>No reviews yet</td>
                     </tr>
                 <?php endif;?>
-                
-                <?php if ($averageRating>=1): ?>
-                    <?php include '../src/php/Templates/stars_average_rating.php';?>
-                    <a style="margin-left: 800px; margin-top: -450px; position: absolute; color: #a2a2a2">Average rating: <?php echo $averageRating ?></a>
-                    <a style="margin-left: 800px; margin-top: -350px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 255px; color: limegreen">'.$stmt->views).'</span>' ?></a>
-                <?php else:?>
-                    <a>Average rating: No ratings yet</a>
-                    <a style="margin-left: 800px; margin-top: -50px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 255px; color: limegreen">'.$stmt->views).'</span>' ?></a>
-                <?php endif;?>
+
                     </section>
 
                     <section id="3" class="tab-panel">
@@ -148,9 +154,9 @@ $averageRating = round($stmt->averageRating, 2);
                             <iframe width="300" height="300" style="border: none" allowfullscreen src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCULQ0LqKq3I5tNKaObSq4oyS5lh_tI6BE&center=<?= $stmt->location ?>&zoom=14&maptype=satellite"></iframe>
                         </div>
                     </section>
-
                 </div>
             </div>
+
 
     <script src="../src/js/main.js"></script>
 </body>
