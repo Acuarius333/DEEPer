@@ -5,7 +5,7 @@ use App\DataProvider;
 use App\Entity\CheckIn;
 use Carbon\Carbon;
 
-require_once '../src/setup.php';
+require_once '../setup.php';
 
 if (!empty($_SESSION['loginId'])) {
 
@@ -35,11 +35,11 @@ if (!empty($_SESSION['loginId'])) {
     }
 }else{
     echo "<script>alert('Please Log In or Sign Up to create a review');
-           window.location.href='login_page.php';</script>";
+           window.location.href='../../public/login_page.php';</script>";
 }
 ?>
 
-        <link rel="stylesheet" href="../src/css/checking_form.css">
+        <link rel="stylesheet" href="../css/checking_form.css">
         <div class="login-box">
             <h2>Create a review</h2>
             <form method="post" autocomplete="off">
@@ -61,7 +61,7 @@ if (!empty($_SESSION['loginId'])) {
 
 <?php
 if (isset($_POST['submitButton'])) {
-    header('Location: product_page.php?productId=' . $_SESSION['productId']);
+    header('Location: ../../public/product_page.php?productId=' . $_SESSION['productId']);
 }
 ?>
 

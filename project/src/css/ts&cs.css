@@ -36,7 +36,7 @@ header {
     --text: #333333;
     --text-inverse: #f4f4f4;
     --background: #f4f4f4;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
 }
 
 .logo-scrolled {
@@ -59,17 +59,17 @@ header {
 .explanation{
 
     margin: 60px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     text-align: left;
 }
 
 .more-stuff-grid {
-    background: #f4f4f4;
+    background: #2a2a2a;
     padding: 2em 0;
     display: grid;
     grid-gap: 2em;
     align-items: center;
-
+    color: #FFFFFF;
 }
 
 .from-left {

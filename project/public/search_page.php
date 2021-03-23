@@ -111,7 +111,7 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
             </section>
         <?php endforeach; ?>
     <?php else:?>
-        <p style="margin-top: -300px; margin-left: 634px"><span style="color: limegreen">Oops! </span><span style="color: white">No results found</span></</p>
+        <p style="margin-top: -300px; margin-left: 634px"><span style="color: limegreen">Oops! </span><span style="color: white">No results found</span></p>
     <?php endif;?>
 <?php endif;?>
 

@@ -7,14 +7,17 @@ use App\DataProvider;
 require_once '../src/setup.php';
 
 $productId = $_GET['productId'];
+
 $stmt = $dbProvider->getProduct($productId);
 $views = $dbProvider->upgradeViews($productId);
 $checkIn = $stmt->getCheckins();
 
+$location = $stmt->location;
 $averageRating = 0;
 $averageRating = round($stmt->averageRating, 2);
 
 $_SESSION['productId'] = $productId;
+
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +92,7 @@ $_SESSION['productId'] = $productId;
                     <a style="margin-left: 800px; margin-top: 30px; position: absolute; color: #a2a2a2">Average rating: <?php echo $averageRating ?></a>
                     <a style="margin-left: 800px; margin-top: 100px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 170px; color: limegreen">'.$stmt->views).'</span>' ?></a>
                 <?php else:?>
-                    <a href="checkin_form.php">Make a review now</a>
+                    <a href="../src/php/checkin_form.php">Make a review now</a>
                     <a>Average rating: No ratings yet</a>
                     <a style="margin-left: 800px; margin-top: -50px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 255px; color: limegreen">'.$stmt->views).'</span>' ?></a>
                 <?php endif;?>
@@ -132,7 +135,26 @@ $_SESSION['productId'] = $productId;
                                     <img class="photo" src="../src/Images/icons/woman.jpg">
                                 </div>
                                 <div class="description">
-                                    <a class="link" href="blog_page.php" style="text-decoration: none"><h1><?= $checkIns->name ?></h1></a>
+                                    <?php
+                                    if (!empty ($_SESSION['loginId'])) {
+
+                                        if ($checkIns->userId != $_SESSION['loginId']) {
+                                            $userId = $_SESSION['loginId'];
+
+                                            $stmt = $dbProvider->getUser($userId);
+                                            $followingId = $stmt->followingId;
+                                            $str_arr = preg_split("/,/", $followingId);
+
+                                            if (in_array($checkIns->userId, $str_arr) == false) {
+                                                echo '<a class="link" href="../src/php/follow.php?userId='.$checkIns->userId.'" style="text-decoration: none; margin-left: 400px; position: absolute">Follow</a>';
+
+                                            }else{
+                                                echo '<a class="link" href="../src/php/unfollow.php?userId='.$checkIns->userId.'" style="text-decoration: none; margin-left: 400px; position: absolute">Unfollow</a>';
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    <a><?= $checkIns->name ?></a>
                                     <?php include '../src/php/Templates/stars_rating.php'; ?>
                                     <h2><?= $checkIns->submitted ?></h2>
                                     <p><?= $checkIns->review ?></p>
@@ -151,7 +173,7 @@ $_SESSION['productId'] = $productId;
 
                     <section id="3" class="tab-panel">
                         <div class="mapFrame">
-                            <iframe width="300" height="300" style="border: none" allowfullscreen src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCULQ0LqKq3I5tNKaObSq4oyS5lh_tI6BE&center=<?= $stmt->location ?>&zoom=14&maptype=satellite"></iframe>
+                            <iframe width="300" height="300" style="border: none" allowfullscreen src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCULQ0LqKq3I5tNKaObSq4oyS5lh_tI6BE&center=<?= $location ?>&zoom=14&maptype=satellite"></iframe>
                         </div>
                     </section>
                 </div>

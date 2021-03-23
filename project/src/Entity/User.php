@@ -8,4 +8,6 @@ class User
     public string $name;
     public string $emailAddress;
     public string $password;
+    public ?string $followersId;
+    public ?string $followingId;
 }

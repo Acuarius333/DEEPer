@@ -49,7 +49,7 @@ class DatabaseProvider
 
             for ($i = 0; $i < count($searchTerms); $i++) {
                 $term = '%' . $searchTerms[$i] . '%';
-                $stmt->bindValue(':term' . ($i+1), $term, PDO::PARAM_STR);
+                $stmt->bindValue(':term' . ($i + 1), $term, PDO::PARAM_STR);
             }
             $stmt->execute();
             ob_start();
@@ -107,23 +107,6 @@ class DatabaseProvider
         return null;
     }
 
-    public function createProduct(Product $product): Product
-    {
-        $stmt = $this->dbh->prepare(
-            'INSERT INTO product (title, description)
-            VALUES (:title, :description)'
-        );
-
-        $stmt->execute([
-            'title' => $product->title,
-            'description' => $product->description,
-        ]);
-
-        $lastInsertId = $this->dbh->lastInsertId();
-        $newProduct = $this->getProduct($lastInsertId);
-        return $newProduct;
-    }
-
     public function getCheckIn(int $checkInId): ?CheckIn
     {
         $stmt = $this->dbh->prepare(
@@ -141,6 +124,25 @@ class DatabaseProvider
         $hydrator = new EntityHydrator();
         return $hydrator->hydrateCheckIn($result);
     }
+
+
+    public function getCheckInFromUser (string $userId): array
+    {
+        $stmt = $this->dbh->prepare(
+            'SELECT id, product_id, user_id, name, rating, review, submitted
+            FROM checkin
+            WHERE user_id = :id'
+        );
+        $stmt->execute(['id' => $userId]);
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS, CheckIn::class);
+
+        if (empty($result)) {
+            return null;
+        }
+
+    }
+
 
     public function createCheckin(CheckIn $checkIn): CheckIn
     {
@@ -164,10 +166,11 @@ class DatabaseProvider
         return $newCheckIn;
     }
 
+
     public function getUser(int $userId): ?User
     {
         $stmt = $this->dbh->prepare(
-            'SELECT id, name, email_address, password
+            'SELECT id, name, email_address, password, following_id, followers_id
             FROM user
             WHERE id = :id'
         );
@@ -220,4 +223,38 @@ class DatabaseProvider
 
         return $newUser;
     }
+
+
+    public function addFollowing($followingGroup): ?User
+    {
+        $stmt = $this->dbh->prepare(
+            'UPDATE `user` 
+                            SET following_id = :following_group 
+                            WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $_SESSION['loginId'],
+            'following_group' => $followingGroup,
+        ]);
+
+        return null;
+    }
+
+    public function addFollowers($followersGroup): ?User
+    {
+        $stmt = $this->dbh->prepare(
+            'UPDATE `user` 
+                            SET followers_id = :followers_group 
+                            WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $_GET['userId'],
+            'followers_group' => $followersGroup,
+        ]);
+
+        return null;
+    }
+
 }

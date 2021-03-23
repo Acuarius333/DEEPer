@@ -92,12 +92,12 @@ nav.vertical ul li {
 
 body {
 
-    background: #E09F3E;
+    background: #b72888;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #E09F3E, #FFF3B0);
-    background: -moz-linear-gradient(to top, #E09F3E, #FFF3B0);
-    background: -o-linear-gradient(to top, #E09F3E, #FFF3B0);
-    background: linear-gradient(to top, #E09F3E, #FFF3B0);
+    background: -webkit-linear-gradient(to top, #b72888, #db373d);
+    background: -moz-linear-gradient(to top, #b72888, #db373d);
+    background: -o-linear-gradient(to top, #b72888, #db373d);
+    background: linear-gradient(to top, #b72888, #db373d);
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Poppins', sans-serif;
@@ -129,7 +129,7 @@ h1 {
     font-size: 1.2em;
     text-align: center;
     margin-bottom: 1em;
-    color: #836732;
+    color: #bf496e;
     font-weight: 100;
     letter-spacing: 1px;
     font-family: 'Poppins', sans-serif;
@@ -228,9 +228,9 @@ input:-webkit-autofill {
 input[type="submit"] {
     font-size: .9em;
     color: #fff;
-    background: #ae833e;
+    background: #b72888;
     outline: none;
-    border: 1px solid #ae833e;
+    border: 1px solid #b72888;
     cursor: pointer;
     padding: 0.9em;
     -webkit-appearance: none;
@@ -245,7 +245,7 @@ input[type="submit"]:hover {
     -o-transition: .5s all;
     -ms-transition: .5s all;
     transition: .5s all;
-    background: #E09F3E;
+    background: #bf496e;
 }
 
 .agileits-top p {
@@ -265,7 +265,7 @@ input[type="submit"]:hover {
 }
 
 .agileits-top p a:hover {
-    color: #836732;
+    color: #bf496e;
 }
 
 .messageLink {
@@ -280,7 +280,7 @@ input[type="submit"]:hover {
 }
 
 .messageLink:hover {
-    color: #E09F3E;
+    color: #bf496e;
 }
 
 /*-- //main --*/

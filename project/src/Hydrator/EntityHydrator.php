@@ -75,6 +75,8 @@ class EntityHydrator
         $user->name = $data['name'];
         $user->emailAddress = $data['email_address'];
         $user->password = $data['password'];
+        $user->followersId = $data['followers_id'] ?? null;
+        $user->followingId = $data['following_id'] ?? null;
 
         return $user;
     }

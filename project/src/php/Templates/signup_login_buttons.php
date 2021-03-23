@@ -7,7 +7,7 @@
             <li>
                 <a
                     class="nav__link nav__link--btn"
-                    href="#"
+                    href="user_page.php?loginId=<?= $_SESSION ['loginId'] ?>"
                 >Account</a>
             </li>
             <li>
