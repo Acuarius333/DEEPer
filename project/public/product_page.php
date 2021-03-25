@@ -50,10 +50,7 @@ $_SESSION['productId'] = $productId;
             <li>
                 <a href="#" class="nav__link">Another page</a>
             </li>
-            <li>
-                <a href="#" class="nav__link">Another page</a>
-            </li>
-            <li>
+            <li style="margin-right: -230px">
                 <a href="blog_page.php" class="nav__link">Blog</a>
             </li>
         </ul>
@@ -91,10 +88,7 @@ $_SESSION['productId'] = $productId;
                     <?php include '../src/php/Templates/stars_average_rating.php';?>
                     <a style="margin-left: 800px; margin-top: 30px; position: absolute; color: #a2a2a2">Average rating: <?php echo $averageRating ?></a>
                     <a style="margin-left: 800px; margin-top: 100px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 170px; color: limegreen">'.$stmt->views).'</span>' ?></a>
-                <?php else:?>
-                    <a href="../src/php/checkin_form.php">Make a review now</a>
-                    <a>Average rating: No ratings yet</a>
-                    <a style="margin-left: 800px; margin-top: -50px; position: absolute; color: #a2a2a2">Visualizations:<?php echo ('<span style="font-size: 30px; margin-left: 255px; color: limegreen">'.$stmt->views).'</span>' ?></a>
+
                 <?php endif;?>
 
                 <?php if (!empty($checkIn)): ?>
@@ -127,12 +121,18 @@ $_SESSION['productId'] = $productId;
                             ?>
 
                             <?php include '../src/php/Templates/rating_bars.php'; ?>
-
+                    <a class='checkinButton' style='text-align: center; text-decoration: none;'href='../src/php/checkin_form.php'>Create a review</a>
                     <?php foreach($checkIn as $checkIns): ?>
+                        <?php $userId = $checkIns->userId?>
+                        <?php $stmt = $dbProvider->getUser($userId);?>
                         <div style="margin-left: 2em">
                             <div class="blog-card">
                                 <div class="meta">
-                                    <img class="photo" src="../src/Images/icons/woman.jpg">
+                                    <?php if (!empty($stmt->imagePath)): ?>
+                                    <img class="photo" src="../src/Images/users_images/<?php echo $stmt->imagePath;?>">
+                                    <?php else: ?>
+                                    <img class="photo" src="../src/Images/icons/grapes.png">
+                                    <?php endif; ?>
                                 </div>
                                 <div class="description">
                                     <?php
@@ -164,8 +164,9 @@ $_SESSION['productId'] = $productId;
                     <?php endforeach;?>
 
                 <?php else: ?>
-                    <tr>
-                        <td>No reviews yet</td>
+                    <tr">
+                        <a style="margin-left: 40px; position:absolute">There are no reviews for this product yet. Do you want to be the first one?</a>
+                        <a class='checkinButton2' style='text-align: center; text-decoration: none;'href='../src/php/checkin_form.php'>Create a review</a>
                     </tr>
                 <?php endif;?>
 
@@ -178,7 +179,6 @@ $_SESSION['productId'] = $productId;
                     </section>
                 </div>
             </div>
-
 
     <script src="../src/js/main.js"></script>
 </body>

@@ -18,6 +18,7 @@ session_start();
 <body>
     <header>
         <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
+        <img style="z-index: -1; height: 70px; width: 70px; margin-left: 15px; margin-top: 77px; position: absolute; display: block;" src="../src/Images/icons/grapes.png" alt="">
         <nav>
             <ul class="nav__list">
 
@@ -27,10 +28,7 @@ session_start();
                 <li>
                     <a href="#" class="nav__link">Another page</a>
                 </li>
-                <li>
-                    <a href="#" class="nav__link">Another page</a>
-                </li>
-                <li>
+                <li style="margin-right: -230px">
                     <a href="blog_page.php" class="nav__link">Blog</a>
                 </li>
             </ul>
@@ -40,7 +38,7 @@ session_start();
 
     <main>
         <section class="home-intro">
-            <img style="height: 100px; width: 100px; margin-top: -150px; position: relative; display: inline-block" src="../src/Images/icons/grapes.png" alt="">
+            <img style="height: 150px; width: 150px; margin-top: -110px; position: relative; display: inline-block; filter: drop-shadow(2px 4px 6px black);" src="../src/Images/icons/grapes.png" alt="">
             <h1>OneUp Wine</h1>
         </section>
 

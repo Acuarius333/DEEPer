@@ -10,4 +10,5 @@ class User
     public string $password;
     public ?string $followersId;
     public ?string $followingId;
+    public ?string $imagePath;
 }

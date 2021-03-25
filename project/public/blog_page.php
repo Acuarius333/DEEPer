@@ -14,8 +14,6 @@ session_start();
     >
     <link rel="stylesheet" href="../src/css/blog.css">
 
-
-
 </head>
 
 <body>
@@ -31,10 +29,7 @@ session_start();
             <li>
                 <a href="#" class="nav__link">Another page</a>
             </li>
-            <li>
-                <a href="#" class="nav__link">Another page</a>
-            </li>
-            <li style="color: #32CD32">
+            <li style="color: #32CD32; margin-right: -230px">
                 <a href="blog_page.php" class="nav__link">Blog</a>
             </li>
         </ul>

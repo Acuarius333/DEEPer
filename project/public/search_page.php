@@ -11,6 +11,7 @@ if (isset($_POST['search'])) {
     $_SESSION['searchWord'] = $searchTerm;
 }
 $stmt = $dbProvider->getProducts(trim($searchTerm));
+
 ?>
 
 <!DOCTYPE html>
@@ -38,13 +39,10 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
             <li style="color: #32CD32">
                 <a href="#" class="nav__link">Find your wine</a>
             </li>
-            <li>
+            <li >
                 <a href="#" class="nav__link">Another page</a>
             </li>
-            <li>
-                <a href="#" class="nav__link">Another page</a>
-            </li>
-            <li>
+            <li style="margin-right: -230px">
                 <a href="blog_page.php" class="nav__link">Blog</a>
             </li>
         </ul>
@@ -70,6 +68,12 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
 <?php if (!empty($_POST['search'])):?>
     <?php if ($stmt):?>
         <?php foreach($stmt as $product): ?>
+            <?php $productId = $product->id;
+                $stmt = $dbProvider->getProduct($productId);
+                $checkIn = $stmt->getCheckins();
+                $averageRating=0;
+                $averageRating = round($stmt->averageRating, 2);
+            ?>
             <section class="main">
                 <div id="card-container" class="flip-card-container">
                     <div id="card" class="flip-card">
@@ -79,11 +83,14 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
                                 <img src="../src/Images/reviews/<?= $product->image_path; ?>" alt="">
                                 <figcaption><?= $product->product_name; ?></figcaption>
                             </figure>
-
                             <ul class="card-list">
-                                <li class="card-list-element"><?= $product->id; ?></li>
-                                <li class="card-list-element"><?= $product->type; ?></li>
-                                <li class="card-list-element"><?= $product->country; ?></li>
+                                <?php if ($averageRating!= 0): ?>
+                                <li class="card-list-element" style="color: lime; font-size: 20px">Average rating: <?= $averageRating; ?>/5</li>
+                                <?php else:?>
+                                <li class="card-list-element" style="color: #cccccc; font-size: 14px">Nobody rated this product yet</li>
+                                <?php endif?>
+                                <li class="card-list-element" style="color: white; font-size: 20px"><?= $product->type; ?></li>
+                                <li class="card-list-element" style="color: white; font-size: 20px"><?= $product->country; ?></li>
                             </ul>
                         </div>
 

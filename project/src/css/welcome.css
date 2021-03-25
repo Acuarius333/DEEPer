@@ -93,14 +93,14 @@ header {
 
 .nav__link--btn--highlight-login {
     background: #32CD32;
-    border-color: #32CD32;
+    border-color: #333;
     color: #333;
 }
 
 .nav__link--btn--highlight-logout{
     background: #f84f4f;
-    border-color: #f84f4f;
-    color: #333;
+    border-color: white;
+    color: white;
 }
 
 .nav__link--btn--highlight:hover {

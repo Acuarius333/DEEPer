@@ -22,7 +22,7 @@
 <?php else: ?>
     <nav>
         <ul class="nav__list">
-            <li>
+            <li style="margin-left: 113px">
                 <a
                     class="nav__link nav__link--btn"
                     href="register_page.php"

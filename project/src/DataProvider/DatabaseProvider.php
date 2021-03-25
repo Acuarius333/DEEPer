@@ -107,6 +107,68 @@ class DatabaseProvider
         return null;
     }
 
+    public function deleteUserPicture($userId)
+    {
+        $stmt = $this->dbh->prepare(
+            'UPDATE `user` 
+                        SET image_path = ""
+                        WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $userId
+        ]);
+
+        return null;
+    }
+
+    public function updateUserPicture($userId, $imagePath)
+    {
+        $stmt = $this->dbh->prepare(
+            'UPDATE `user` 
+                        SET image_path = :new_image_path
+                        WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $userId,
+            'new_image_path' => $imagePath
+        ]);
+
+        return null;
+    }
+
+    public function deleteUserPassword($userId)
+    {
+        $stmt = $this->dbh->prepare(
+            'UPDATE `user` 
+                        SET password = ""
+                        WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $userId
+        ]);
+
+        return null;
+    }
+
+    public function updateUserPassword($userId, $newPassword)
+    {
+        $stmt = $this->dbh->prepare(
+            'UPDATE `user` 
+                        SET password = :new_password
+                        WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $userId,
+            'new_password' => $newPassword
+        ]);
+
+        return null;
+    }
+
     public function getCheckIn(int $checkInId): ?CheckIn
     {
         $stmt = $this->dbh->prepare(
@@ -143,7 +205,6 @@ class DatabaseProvider
 
     }
 
-
     public function createCheckin(CheckIn $checkIn): CheckIn
     {
         $stmt = $this->dbh->prepare('
@@ -166,11 +227,24 @@ class DatabaseProvider
         return $newCheckIn;
     }
 
+    public function deleteCheckin($checkinId)
+    {
+        $stmt = $this->dbh->prepare(
+            'DELETE FROM `checkin` 
+                        WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $checkinId
+        ]);
+
+        return null;
+    }
 
     public function getUser(int $userId): ?User
     {
         $stmt = $this->dbh->prepare(
-            'SELECT id, name, email_address, password, following_id, followers_id
+            'SELECT id, name, email_address, password, following_id, followers_id, image_path
             FROM user
             WHERE id = :id'
         );

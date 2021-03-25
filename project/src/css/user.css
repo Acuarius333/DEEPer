@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: "Poppins", sans-serif;
     overflow-x: hidden;
+    background-color: #2a2a2a;
 }
 
 .site-logo {
@@ -79,6 +80,7 @@ header {
     transition: background 250ms ease-in-out;
     letter-spacing: 1px;
     padding: 0.75em 1.5em;
+
 }
 
 .nav__link--btn:hover {
@@ -89,12 +91,6 @@ header {
 
 .nav__link--btn::after {
     display: none;
-}
-
-.nav__link--btn--highlight-login {
-    background: #32CD32;
-    border-color: #333;
-    color: #333;
 }
 
 .nav__link--btn--highlight-logout{
@@ -115,6 +111,7 @@ header {
     --text-inverse: #f4f4f4;
     --background: #f4f4f4;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
+
 }
 
 .logo-scrolled {
@@ -126,14 +123,15 @@ header {
 }
 
 .home-intro {
-    padding: 50vh 0;
-    background: radial-gradient(ellipse, #ec0598, #cb1539), url("https://images.westend61.de/0000732744pw/red-wine-splashing-in-glass-in-front-of-white-background-CPF000031.jpg");
+    padding: 16vh 0;
+    background: radial-gradient(ellipse, #ab0f2f, #750255);
     background-size: auto;
     background-position: center;
     background-blend-mode: multiply;
     position: -webkit-sticky;
     color: white;
     text-align: center;
+    margin-bottom: 7em;
 }
 
 .home-about {
@@ -151,94 +149,6 @@ header {
     opacity: 1;
 }
 
-.mapFrame {
-    border-style: solid;
-    border-width: 6px;
-    border-color: #ffffff;
-    box-shadow: 0px 0px 10px #000000;
-    margin: auto;
-    border-radius: 80px;
-    overflow: hidden;
-    width: 300px;
-    height: 300px;
-    position: relative;
-    margin-left: 900px;
-    margin-top: 20px;
-}
-
-.tabset > input[type="radio"] {
-    position: absolute;
-    left: -200vw;
-}
-
-.tabset .tab-panel {
-    display: none;
-}
-
-.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
-.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
-.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
-.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
-.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
-.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
-    display: block;
-}
-
-.tabset > label {
-    position: relative;
-    display: inline-block;
-    padding: 15px 15px 25px 25px;
-    border: 1px solid transparent;
-    border-bottom: 0;
-    cursor: pointer;
-    color: #f4f4f4;
-}
-
-.tabset > label::after {
-    content: "";
-    position: absolute;
-    left: 25px;
-    bottom: 20px;
-    width: 22px;
-    height: 2px;
-    background: #2a2a2a;
-}
-
-.tabset > label:hover,
-.tabset > input:focus + label {
-    color: limegreen;
-}
-
-.tabset > label:hover::after,
-.tabset > input:focus + label::after,
-.tabset > input:checked + label::after {
-    background: limegreen;
-}
-
-.tabset > input:checked + label {
-    border-color: #ccc;
-    border-bottom: 1px solid #2a2a2a;
-    margin-bottom: -1px;
-}
-
-.tab-panel {
-    padding: 30px 0;
-    border-top: 1px solid #ccc;
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-}
-
-.tabset {
-    max-width: 100em;
-    background: #2a2a2a;
-    color: #FFFFFF;
-    padding-bottom: 200px;
-}
-
 .blog-card {
     display: flex;
     flex-direction: column;
@@ -249,8 +159,9 @@ header {
     line-height: 1.4;
     font-family: 'Poppins', sans-serif;
     border-radius: 5px;
-    overflow: hidden;
+    overflow: auto;
     z-index: 0;
+
 }
 .blog-card a {
     color: inherit;
@@ -287,13 +198,6 @@ header {
     font-size: 1rem;
     font-weight: 300;
     color: #a2a2a2;
-    margin-top: 5px;
-}
-
-.blog-card .description p {
-    font-size: 1rem;
-    font-weight: 300;
-    color: #ffffff;
     margin-top: 5px;
 }
 
@@ -346,137 +250,222 @@ header {
     }
 }
 
-.ratingBars {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    width: 600px;
+{box-sizing: border-box;}
+
+
+.open-button1 {
+    background-color: #555;
+    color: #fcfcfc;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    left: 1008px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    border-radius: 20px;
 }
 
-.data {
-    float: left;
-    width: 15%;
-    margin-top: 10px;
-    color: #a2a2a2;
-}
-.progressBar {
-    margin-top: 10px;
-    float: left;
-    width: 70%;
-}
-
-.right {
-    text-align: right;
+.open-button1:hover {
+    background-color: #555;
+    color: limegreen;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    left: 1008px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    border-radius: 20px;
 }
 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+.open-button2 {
+    background-color: #555;
+    color: #ffffff;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    top: 450px;
+    left: 1008px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    border-radius: 20px;
 }
 
-.progressContainer {
+.open-button2:hover {
+    background-color: #555;
+    color: limegreen;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    top: 450px;
+    left: 1008px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+.open-button3 {
+    background-color: #555;
+    color: #ffffff;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    top: 500px;
+    left: 1008px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+.open-button3:hover {
+    background-color: #555;
+    color: limegreen;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    top: 500px;
+    left: 1008px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+.open-button4 {
+    background-color: #555;
+    color: #ffffff;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    top: 550px;
+    left: 1008px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+.open-button4:hover {
+    background-color: #555;
+    color: #ff6d6d;
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    top: 550px;
+    left: 1008px;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+.open-button5 {
+    background-color: #555;
+
+    border: #000000;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    width: 80px;
+    height: 30px;
+    left: 592px;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.open-button5:hover {
+    background-color: #555;
+    color: #ff6d6d;
+    border: #000000;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    width: 80px;
+    height: 30px;
+    left: 592px;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.open-button5:hover {
+    background-color: #555;
+    color: #ff6d6d;
+    border: #000000;
+    cursor: pointer;
+    opacity: 0.8;
+    position: absolute;
+    box-shadow: 0 3px 20px rgb(0, 0, 0);
+    width: 80px;
+    height: 30px;
+    left: 592px;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
     width: 100%;
-    background-color: #777777;
-    border-radius: 10px;
-    box-shadow: 0 3px 7px -1px rgba(0, 0, 0, .9);
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
 }
 
-.bar-1, .bar-2, .bar-3, .bar-4, .bar-5 {
-    border-radius: 10px;
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
 }
 
-.bar-5 {
-    height: 18px;
-    background-color: limegreen;
-}
-
-.bar-4 {
-    height: 18px;
-    background-color: #92cd32;
-}
-
-.bar-3 {
-    height: 18px;
-    background-color: #cdc532;
-}
-
-.bar-2 {
-    height: 18px;
-    background-color: #cd7a32;
-}
-
-.bar-1 {
-    height: 18px;
-    background-color: #cd3f32;
-}
-
-.checkinButton {
-    background-color: #333333;
-    border: #f5f3f3;
+/* Set a style for the submit/login button */
+.form-container .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
     cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
     opacity: 0.8;
-    position: absolute;
-    box-shadow: 0 3px 20px rgb(0 0 0);
-    width: 180px;
-    height: 32px;
-    left: 1000px;
-    z-index: 2;
-    border-radius: 20px;
-    margin-top: 380px;
-    color: limegreen;
-    font-size: 20px;
-    text-decoration: none;
 }
 
-.checkinButton:hover {
-    background-color: #555;
-    border: #f5f3f3;
-    cursor: pointer;
-    opacity: 0.8;
-    position: absolute;
-    box-shadow: 0 3px 20px rgb(0 0 0);
-    width: 180px;
-    height: 32px;
-    left: 1000px;
-    z-index: 2;
-    border-radius: 20px;
-    margin-top: 380px;
-    color: limegreen;
-    font-size: 20px;
-    text-decoration: none;
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+    background-color: red;
 }
 
-.checkinButton2 {
-    background-color: #333333;
-    border: #f5f3f3;
-    cursor: pointer;
-    opacity: 0.8;
-    position: absolute;
-    box-shadow: 0 3px 20px rgb(0 0 0);
-    width: 180px;
-    height: 32px;
-    left: 900px;
-    z-index: 2;
-    border-radius: 20px;
-    margin-top: 10px;
-    color: limegreen;
-    font-size: 20px;
-    text-decoration: none;
-}
-
-.checkinButton2:hover {
-    background-color: #555;
-    border: #f5f3f3;
-    cursor: pointer;
-    opacity: 0.8;
-    position: absolute;
-    box-shadow: 0 3px 20px rgb(0 0 0);
-    width: 180px;
-    height: 32px;
-    left: 900px;
-    z-index: 2;
-    border-radius: 20px;
-    margin-top: 10px;
-    color: limegreen;
-    font-size: 20px;
-    text-decoration: none;
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
 }

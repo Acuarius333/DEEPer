@@ -37,7 +37,6 @@ class EntityHydrator
         $checkIn->productId = $data['product_id'];
         $checkIn->submitted = $data['submitted'];
 
-
         return $checkIn;
     }
 
@@ -77,6 +76,7 @@ class EntityHydrator
         $user->password = $data['password'];
         $user->followersId = $data['followers_id'] ?? null;
         $user->followingId = $data['following_id'] ?? null;
+        $user->imagePath = $data['image_path'] ?? null;
 
         return $user;
     }

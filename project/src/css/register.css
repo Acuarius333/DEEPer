@@ -241,7 +241,7 @@ input[type="submit"] {
     color: #fff;
     background: #e95353;
     outline: none;
-    border: 1px solid #e95353;
+    border: 1px solid #d68484;
     cursor: pointer;
     padding: 0.9em;
     -webkit-appearance: none;
@@ -256,7 +256,9 @@ input[type="submit"]:hover {
     -o-transition: .5s all;
     -ms-transition: .5s all;
     transition: .5s all;
-    background: #e95353;
+    background: #f5305f;
+    border: 1px solid #d68484;
+    color: limegreen;
 }
 
 .agileits-top p {
