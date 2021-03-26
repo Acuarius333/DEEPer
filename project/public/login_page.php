@@ -46,8 +46,8 @@ if (isset($_POST['email'], $_POST['password'])) {
                 <div class="agileits-top">
                         <div style="margin-top: -30px" class="alert"><?php echo ($errorMessage) ?></div>
                     <form id="myForm" action="#" method="post">
-                        <input class="text email" type="email" name="email" placeholder="Email" required>
-                        <input class="text" type="password" name="password" placeholder="Password" required>
+                        <input class="text email" type="email" name="email" placeholder="Email" autocomplete="off" required>
+                        <input class="text" type="password" name="password" placeholder="Password" pattern=".{6,}" title="6 characters minimum" autocomplete="off" required>
                         <input type="submit" value="LOGIN">
                     </form>
                     <p>Not registered yet? <a href="register_page.php">Sign up Now!</a></p>

@@ -56,10 +56,10 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPa
                     <div style="margin-top: -30px" class="alert"><?php echo ($message) ?></div>
                     <?php endif; ?>
                     <form action="#" method="post">
-                        <input class="text" type="text" name="name" placeholder="Name" required>
-                        <input class="text email" type="email" name="email" placeholder="Email" required>
-                        <input class="text" type="password" name="password" placeholder="Password" required>
-                        <input class="text w3lpass" type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                        <input class="text" type="text" name="name" placeholder="Name" autocomplete="off" required>
+                        <input class="text email" type="email" name="email" placeholder="Email" autocomplete="off" required>
+                        <input class="text" type="password" name="password" placeholder="Password" pattern=".{6,}" title="6 characters minimum" autocomplete="off" required>
+                        <input class="text w3lpass" type="password" name="confirmPassword" placeholder="Confirm Password" pattern=".{6,}" title="6 characters minimum" autocomplete="off" required>
                         <div class="wthree-text">
                             <label class="anim">
                                 <input type="checkbox" class="checkbox" required="">

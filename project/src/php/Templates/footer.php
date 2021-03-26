@@ -1,5 +1,4 @@
 <?php
-
 ?>
 
 <link rel="stylesheet" href="../src/css/footer.css">
@@ -15,7 +14,7 @@
             </div>
             <div class="col-xs-6 col-md-3">
                 <ul class="footer-links">
-                    <li style="margin-left: 30px;"><a href="">About Us</a></li>
+                    <li style="margin-left: 30px;"><a href="about_page.php" target="_blank">About Us</a></li>
                 </ul>
             </div>
         </div>
