@@ -18,6 +18,7 @@ class EntityHydrator
         $product->location = $data['location'];
         $product->country = $data['country'];
         $product->description = $data['description'];
+        $product->grapeInfo = $data['grape_info'];
         $product->views = $data['views'];
         $product->keywords = $data['keywords'];
         $product->imagePath = $data['image_path'];
@@ -50,6 +51,7 @@ class EntityHydrator
             'type' => $data[0]['type'],
             'location' => $data[0]['location'],
             'country' => $data[0]['country'],
+            'grape_info' => $data[0]['grape_info'],
             'views' => $data[0]['views'],
             'keywords' => $data[0]['keywords'],
             'average_rating' => $data[0]['average_rating'],

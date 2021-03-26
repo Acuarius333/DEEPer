@@ -36,7 +36,7 @@ class DatabaseProvider
         if (strstr($searchTerm, ' ')) {
             $searchTerms = explode(' ', $searchTerm);
             $sql = 'SELECT 
-                      id, product_name, type, country, location, description, views, image_path 
+                      id, product_name, type, country, location, description, views, image_path, grape_info 
                       FROM product 
                       WHERE (';
 
@@ -58,7 +58,7 @@ class DatabaseProvider
         } else {
             $stmt = $this->dbh->prepare(
                 'SELECT 
-                      id, product_name, type, country, location, description, views, image_path 
+                      id, product_name, type, country, location, description, views, image_path, grape_info 
                       FROM product 
                       WHERE keywords 
                       LIKE :searchTerm');
@@ -75,7 +75,7 @@ class DatabaseProvider
     {
         $stmt = $this->dbh->prepare(
             'SELECT 
-            p.id AS id, p.product_name, p.type, p.description, p.image_path, p.location, p.country, p.views, p.keywords,
+            p.id AS id, p.product_name, p.type, p.description, p.image_path, p.location, p.country, grape_info, p.views, p.keywords,
             c.id, c.name, c.user_id, c.rating, c.review, c.submitted, c.product_id,
             (
                 SELECT AVG(checkin.rating) AS average_rating FROM checkin WHERE product_id = p.id
@@ -326,6 +326,34 @@ class DatabaseProvider
         $stmt->execute([
             'id' => $_GET['userId'],
             'followers_group' => $followersGroup,
+        ]);
+
+        return null;
+    }
+
+    public function deleteAccountCheckins($userId)
+    {
+        $stmt = $this->dbh->prepare(
+            'DELETE FROM `checkin` 
+                        WHERE user_id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $userId
+        ]);
+
+        return null;
+    }
+
+    public function deleteAccountUser($userId)
+    {
+        $stmt = $this->dbh->prepare(
+            'DELETE FROM `user` 
+                        WHERE id = :id'
+        );
+
+        $stmt->execute([
+            'id' => $userId
         ]);
 
         return null;

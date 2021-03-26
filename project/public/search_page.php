@@ -40,7 +40,7 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
                 <a href="#" class="nav__link">Find your wine</a>
             </li>
             <li >
-                <a href="#" class="nav__link">Another page</a>
+                <a href="history_page.php" class="nav__link">History</a>
             </li>
             <li style="margin-right: -230px">
                 <a href="blog_page.php" class="nav__link">Blog</a>
@@ -61,7 +61,6 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
                     </svg>
                 </div>
             </div>
-        </section>
     </form>
 </main>
 
@@ -100,7 +99,7 @@ $stmt = $dbProvider->getProducts(trim($searchTerm));
                                 <img src="../src/Images/reviews/<?= $product->image_path; ?>" alt="">
                             </figure>
 
-                            <button onclick="window.open('product_page.php?productId=<?= $product->id; ?>')">Find out more</button>
+                            <button style="outline:0;" onclick="window.open('product_page.php?productId=<?= $product->id; ?>')">Find out more</button>
 
                             <div class="design-container">
                                 <span class="design design--1"></span>

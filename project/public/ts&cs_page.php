@@ -23,7 +23,7 @@
 
 <main>
     <section class="home-intro">
-        <h1>Terms and Conditions</h1>
+        <a style="font-size: 30px">Terms and Conditions</a>
     </section>
 
     <div>
@@ -31,7 +31,6 @@
             <h3>Dear user:</h3>
             <p>Please take your time to read carefully and understand the following Terms and Conditions:</p>
         </div>
-
 
         <div class="more-stuff-grid">
 
@@ -193,6 +192,8 @@
         </div>
     </div>
 </main>
+
+<?php include '../src/php/Templates/footer.php'; ?>
 
 <script src="../src/js/main.js"></script>
 </body>

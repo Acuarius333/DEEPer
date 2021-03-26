@@ -265,6 +265,7 @@ header {
     left: 1008px;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     border-radius: 20px;
+    outline:0;
 }
 
 .open-button1:hover {
@@ -279,6 +280,7 @@ header {
     left: 1008px;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     border-radius: 20px;
+    outline:0;
 }
 
 .open-button2 {
@@ -290,10 +292,11 @@ header {
     cursor: pointer;
     opacity: 0.8;
     position: absolute;
-    top: 450px;
+    top: 51px;
     left: 1008px;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     border-radius: 20px;
+    outline:0;
 }
 
 .open-button2:hover {
@@ -305,10 +308,11 @@ header {
     cursor: pointer;
     opacity: 0.8;
     position: absolute;
-    top: 450px;
+    top: 51px;
     left: 1008px;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     border-radius: 20px;
+    outline:0;
 }
 
 .open-button3 {
@@ -320,10 +324,11 @@ header {
     cursor: pointer;
     opacity: 0.8;
     position: absolute;
-    top: 500px;
-    left: 1008px;
+    top: 102px;
+    left: 1010px;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     border-radius: 20px;
+    outline:0;
 }
 
 .open-button3:hover {
@@ -335,10 +340,11 @@ header {
     cursor: pointer;
     opacity: 0.8;
     position: absolute;
-    top: 500px;
-    left: 1008px;
+    top: 102px;
+    left: 1010px;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     border-radius: 20px;
+    outline:0;
 }
 
 .open-button4 {
@@ -350,10 +356,11 @@ header {
     cursor: pointer;
     opacity: 0.8;
     position: absolute;
-    top: 550px;
-    left: 1008px;
+    top: 153px;
+    left: 1010px;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     border-radius: 20px;
+    outline:0;
 }
 
 .open-button4:hover {
@@ -365,10 +372,11 @@ header {
     cursor: pointer;
     opacity: 0.8;
     position: absolute;
-    top: 550px;
-    left: 1008px;
+    top: 153px;
+    left: 1010px;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     border-radius: 20px;
+    outline:0;
 }
 
 .open-button5 {
@@ -380,40 +388,40 @@ header {
     position: absolute;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     width: 80px;
-    height: 30px;
+    height: 23px;
     left: 592px;
     z-index: 1;
     border-radius: 20px;
+    outline:0;
+    color: #FFFFFF !important;
 }
 
 .open-button5:hover {
     background-color: #555;
-    color: #ff6d6d;
+    color: #ff6d6d !important;
     border: #000000;
     cursor: pointer;
     opacity: 0.8;
     position: absolute;
     box-shadow: 0 3px 20px rgb(0, 0, 0);
     width: 80px;
-    height: 30px;
+    height: 23px;
     left: 592px;
     z-index: 1;
     border-radius: 20px;
+    outline:0;
 }
 
-.open-button5:hover {
-    background-color: #555;
-    color: #ff6d6d;
-    border: #000000;
-    cursor: pointer;
-    opacity: 0.8;
+.btn_cancel{
+    background-color: #f90000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.9;
+    margin-left: 297px;
+    margin-top: -240px;
     position: absolute;
-    box-shadow: 0 3px 20px rgb(0, 0, 0);
-    width: 80px;
-    height: 30px;
-    left: 592px;
-    z-index: 1;
-    border-radius: 20px;
+    outline:0;
 }
 
 /* The popup form - hidden by default */
@@ -421,25 +429,75 @@ header {
     display: none;
     position: fixed;
     bottom: 0;
-    right: 15px;
-    border: 3px solid #f1f1f1;
+    right: 200px;
+    border: 3px solid #20e22861;
     z-index: 9;
 }
 
 /* Add styles to the form container */
+.form-container1 {
+    max-width: 300px;
+    padding: 10px;
+    color: white;
+    background-color: #2a2a2a; border: none;
+    height: 226px;
+}
+
 .form-container {
     max-width: 300px;
     padding: 10px;
-    background-color: white;
+    color: white;
+    background-color: #2a2a2a; border: none
 }
 
 /* Full-width input fields */
+.form-container1 input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #555;
+    color: #db0f0f;
+}
+
+/* When the inputs get focus, do something */
+.form-container1 input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container1 .btn {
+    background-color: limegreen;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.8;
+    border-radius: 30px;
+    margin-top: 147px;
+    outline:0;
+}
+
+/* Add a red background color to the cancel button */
+.form-container1 .cancel {
+    background-color: red;
+    outline:0;
+}
+
+/* Add some hover effects to buttons */
+.form-container1 .btn:hover, .open-button:hover {
+    opacity: 1;
+}
+
 .form-container input[type=text], .form-container input[type=password] {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
-    background: #f1f1f1;
+    background: #555;
+    color: #db0f0f;
 }
 
 /* When the inputs get focus, do something */
@@ -450,22 +508,27 @@ header {
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-    background-color: #4CAF50;
+    background-color: limegreen;
     color: white;
     padding: 16px 20px;
     border: none;
     cursor: pointer;
     width: 100%;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     opacity: 0.8;
+    border-radius: 30px;
+    outline:0;
 }
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
     background-color: red;
+    outline:0;
 }
 
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
     opacity: 1;
 }
+
+

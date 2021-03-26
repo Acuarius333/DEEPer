@@ -31,60 +31,60 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirmPa
 
 <!DOCTYPE html>
 <html lang= "en">
-<head>
-    <title>OneUp Wine-Sign Up</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <link href="../src/css/register.css" rel="stylesheet" type="text/css" media="all" />
-    <link
-            href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
-            rel="stylesheet"
-    >
-</head>
-<body>
-<br>
-<br>
-<br>
-<a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
-<img style="z-index: -1; height: 70px; width: 70px; margin-left: 65px; margin-top: -15px; position: absolute; display: block;" src="../src/Images/icons/grapes.png" alt="">
-<div class="main-w3layouts wrapper">
-    <h1>Sign Up</h1>
-    <div style="margin-top: 20px" class="main-agileinfo">
-        <div class="agileits-top">
-            <?php if ($registered = true): ?>
-            <div style="margin-top: -30px" class="alert"><?php echo ($message) ?></div>
-            <?php endif; ?>
-            <form action="#" method="post">
-                <input class="text" type="text" name="name" placeholder="Name" required>
-                <input class="text email" type="email" name="email" placeholder="Email" required>
-                <input class="text" type="password" name="password" placeholder="Password" required>
-                <input class="text w3lpass" type="password" name="confirmPassword" placeholder="Confirm Password" required>
-                <div class="wthree-text">
-                    <label class="anim">
-                        <input type="checkbox" class="checkbox" required="">
-                        <span>I Agree To The <a class="messageLink" href="ts&cs_page.php" target="_blank"> Terms & Conditions</a></span>
-                    </label>
-                    <div class="clear"> </div>
+    <head>
+        <title>OneUp Wine-Sign Up</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <link href="../src/css/register.css" rel="stylesheet" type="text/css" media="all" />
+        <link
+                href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
+                rel="stylesheet"
+        >
+    </head>
+    <body>
+        <br>
+        <br>
+        <br>
+        <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
+        <img style="z-index: -1; height: 70px; width: 70px; margin-left: 65px; margin-top: -15px; position: absolute; display: block;" src="../src/Images/icons/grapes.png" alt="">
+        <div class="main-w3layouts wrapper">
+            <h1>Sign Up</h1>
+            <div style="margin-top: 20px" class="main-agileinfo">
+                <div class="agileits-top">
+                    <?php if ($registered = true): ?>
+                    <div style="margin-top: -30px" class="alert"><?php echo ($message) ?></div>
+                    <?php endif; ?>
+                    <form action="#" method="post">
+                        <input class="text" type="text" name="name" placeholder="Name" required>
+                        <input class="text email" type="email" name="email" placeholder="Email" required>
+                        <input class="text" type="password" name="password" placeholder="Password" required>
+                        <input class="text w3lpass" type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                        <div class="wthree-text">
+                            <label class="anim">
+                                <input type="checkbox" class="checkbox" required="">
+                                <span>I Agree To The <a class="messageLink" href="ts&cs_page.php" target="_blank"> Terms & Conditions</a></span>
+                            </label>
+                            <div class="clear"> </div>
+                        </div>
+                        <input type="submit" value="SIGNUP">
+                    </form>
+                    <p>Already registered? <a href="login_page.php">Login Now!</a></p>
                 </div>
-                <input type="submit" value="SIGNUP">
-            </form>
-            <p>Already registered? <a href="login_page.php">Login Now!</a></p>
-        </div>
-    </div>
+            </div>
 
-    <ul class="bubbles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-</body>
+            <ul class="bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </body>
 </html>

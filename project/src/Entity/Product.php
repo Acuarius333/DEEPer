@@ -11,6 +11,7 @@ class Product
     public string $country;
     public int $views;
     public string $description;
+    public string $grapeInfo;
     public string $keywords;
     public string $imagePath;
     public ?string $averageRating;

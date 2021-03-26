@@ -9,7 +9,7 @@ echo '<script>
         }
         
         if (confirm("Are you sure you want to delete your account?")){
-            window.location.href = "../php/test.php"
+            window.location.href = "delete_account_confirmed.php"
         }else{
             history.go(-1)
         }

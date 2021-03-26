@@ -20,7 +20,7 @@ if (!empty($_SESSION['loginId'])) {
             'name' => strip_tags($username),
             'productId' => strip_tags($productId),
             'userId' => strip_tags($userId),
-            'timeStamp' => date('d-M-Y h:i', time()),
+            'timeStamp' => Carbon::now('Europe/London'),
         ];
 
         $formCheckin = new CheckIn();
@@ -64,6 +64,9 @@ if (isset($_POST['submitButton'])) {
     header('Location: ../../public/product_page.php?productId=' . $_SESSION['productId']);
 }
 ?>
+<html>
+<title>OneUp Wine-Review form</title>
+</html>
 
 
 

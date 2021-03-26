@@ -135,7 +135,7 @@ header {
 
 .home-intro {
     padding: 50vh 0;
-    background: radial-gradient(ellipse, #ec0598, #cb1539), url(https://images.pexels.com/photos/3756623/pexels-photo-3756623.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+    background: radial-gradient(ellipse, #de5aac, #dd5571), url(../Images/backgrounds/blog_page.jpg);
     background-size: cover;
     background-blend-mode: multiply;
     color: white;
@@ -197,3 +197,4 @@ header {
 .fade-in.appear {
     opacity: 1;
 }
+

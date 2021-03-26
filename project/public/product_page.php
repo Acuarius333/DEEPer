@@ -11,7 +11,7 @@ $productId = $_GET['productId'];
 $stmt = $dbProvider->getProduct($productId);
 $views = $dbProvider->upgradeViews($productId);
 $checkIn = $stmt->getCheckins();
-
+$grapeInfo = $stmt->grapeInfo;
 $location = $stmt->location;
 $averageRating = 0;
 $averageRating = round($stmt->averageRating, 2);
@@ -26,7 +26,7 @@ $_SESSION['productId'] = $productId;
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>OneUp Wine-Welcome!</title>
+<title>OneUp Wine-Your wine</title>
 <link
         href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap"
         rel="stylesheet">
@@ -37,28 +37,27 @@ $_SESSION['productId'] = $productId;
 </head>
 
 <body>
-<header>
-    <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
-    <img style="z-index: -1; height: 70px; width: 70px; margin-left: 15px; margin-top: 77px; position: absolute; display: block;" src="../src/Images/icons/grapes.png" alt="">
+    <header>
+        <a href="welcome_page.php" class="site-logo" aria-label="homepage">OneUp Wine</a>
+        <img style="z-index: -1; height: 70px; width: 70px; margin-left: 15px; margin-top: 77px; position: absolute; display: block;" src="../src/Images/icons/grapes.png" alt="">
 
-    <nav>
-        <ul class="nav__list">
+        <nav>
+            <ul class="nav__list">
 
-            <li>
-                <a style="color: #32CD32" href="search_page.php" class="nav__link">Find your wine</a>
-            </li>
-            <li>
-                <a href="#" class="nav__link">Another page</a>
-            </li>
-            <li style="margin-right: -230px">
-                <a href="blog_page.php" class="nav__link">Blog</a>
-            </li>
-        </ul>
-    </nav>
-    <?php include '../src/php/Templates/signup_login_buttons.php'; ?>
-</header>
+                <li>
+                    <a style="color: #32CD32" href="search_page.php" class="nav__link">Find your wine</a>
+                </li>
+                <li>
+                    <a href="history_page.php" class="nav__link">History</a>
+                </li>
+                <li style="margin-right: -230px">
+                    <a href="blog_page.php" class="nav__link">Blog</a>
+                </li>
+            </ul>
+        </nav>
+        <?php include '../src/php/Templates/signup_login_buttons.php'; ?>
+    </header>
 
-<main>
     <section class="home-intro">
     </section>
     <a style="z-index: 1; font-variant: small-caps; position: absolute; margin-top: -400px; margin-left: 250px; color: #f4f4f4; font-size: 70px;"><?= $stmt->productName ?></a>
@@ -110,17 +109,17 @@ $_SESSION['productId'] = $productId;
                             };
                             if (($checkIns->rating)==1) {
                                 $e++;} ?>
-                            <?php endforeach;?>
-                            <?php
-                            $total = ($a+$b+$c+$d+$e);
-                            $aValue = (100/$total*$a);
-                            $bValue = (100/$total*$b);
-                            $cValue = (100/$total*$c);
-                            $dValue = (100/$total*$d);
-                            $eValue = (100/$total*$e);
-                            ?>
+                        <?php endforeach;?>
+                    <?php
+                    $total = ($a+$b+$c+$d+$e);
+                    $aValue = (100/$total*$a);
+                    $bValue = (100/$total*$b);
+                    $cValue = (100/$total*$c);
+                    $dValue = (100/$total*$d);
+                    $eValue = (100/$total*$e);
+                    ?>
 
-                            <?php include '../src/php/Templates/rating_bars.php'; ?>
+                    <?php include '../src/php/Templates/rating_bars.php'; ?>
                     <a class='checkinButton' style='text-align: center; text-decoration: none;'href='../src/php/checkin_form.php'>Create a review</a>
                     <?php foreach($checkIn as $checkIns): ?>
                         <?php $userId = $checkIns->userId?>
@@ -140,14 +139,12 @@ $_SESSION['productId'] = $productId;
 
                                         if ($checkIns->userId != $_SESSION['loginId']) {
                                             $userId = $_SESSION['loginId'];
-
                                             $stmt = $dbProvider->getUser($userId);
                                             $followingId = $stmt->followingId;
                                             $str_arr = preg_split("/,/", $followingId);
 
                                             if (in_array($checkIns->userId, $str_arr) == false) {
                                                 echo '<a class="link" href="../src/php/follow.php?userId='.$checkIns->userId.'" style="text-decoration: none; margin-left: 400px; position: absolute">Follow</a>';
-
                                             }else{
                                                 echo '<a class="link" href="../src/php/unfollow.php?userId='.$checkIns->userId.'" style="text-decoration: none; margin-left: 400px; position: absolute">Unfollow</a>';
                                             }
@@ -164,7 +161,7 @@ $_SESSION['productId'] = $productId;
                     <?php endforeach;?>
 
                 <?php else: ?>
-                    <tr">
+                    <tr>
                         <a style="margin-left: 40px; position:absolute">There are no reviews for this product yet. Do you want to be the first one?</a>
                         <a class='checkinButton2' style='text-align: center; text-decoration: none;'href='../src/php/checkin_form.php'>Create a review</a>
                     </tr>
@@ -173,12 +170,17 @@ $_SESSION['productId'] = $productId;
                     </section>
 
                     <section id="3" class="tab-panel">
+                        <p style="width: 800px; margin-left: 40px; position: absolute; text-align: justify">
+                            <?php echo $grapeInfo; ?>
+                        </p>
                         <div class="mapFrame">
                             <iframe width="300" height="300" style="border: none" allowfullscreen src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCULQ0LqKq3I5tNKaObSq4oyS5lh_tI6BE&center=<?= $location ?>&zoom=14&maptype=satellite"></iframe>
                         </div>
                     </section>
                 </div>
             </div>
+
+    <?php include '../src/php/Templates/footer.php'; ?>
 
     <script src="../src/js/main.js"></script>
 </body>

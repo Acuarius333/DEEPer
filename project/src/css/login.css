@@ -169,7 +169,6 @@ input[type="text"], input[type="email"], input[type="password"] {
     font-family: 'Poppins', sans-serif;
 }
 
-
 input.email, input.text.w3lpass {
     margin: 2em 0;
 }
