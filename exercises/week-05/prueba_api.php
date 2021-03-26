@@ -14,10 +14,9 @@
 
         <script>
             function getData () {
-                const apikey = "1bd5bb2e4bc742eead26e6911f8f8195"
-                const urlData = `https://api.spoonacular.com/food/products/search?query=wine&apiKey=${apikey}`
+                const urlData = `http://api.weatherapi.com/v1/current.json?key=1d31632dbd0a4cf592691208211803&q=44.83797578872893, -0.575963596246983&aqi=no`
                 console.log(">>")
-                const urlById = `https://api.spoonacular.com/recipes/431332/?apikey=1bd5bb2e4bc742eead26e6911f8f8195`
+                const urlById = `http://api.weatherapi.com/v1/current.json?key=1d31632dbd0a4cf592691208211803&q=44.83797578872893, -0.575963596246983&aqi=no`
 
                 $.ajax({
                     dataType: "json",
