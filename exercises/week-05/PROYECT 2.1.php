@@ -2,8 +2,7 @@
 <html lang="en">
 <meta charset="UTF-8">
 <head>
-
-    <title>British Shorthair</title>
+    <title>Project</title>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -105,9 +104,6 @@
             $averageSimplified2 = (round($average, 2)*100/5);
 
 
-            mysqli_close($conection);
-
-
             $nameDB = Array();
             $ratingDB = Array();
             $reviewDB = Array();
@@ -157,6 +153,28 @@
                     $averageSimplified2 = '<img class="starImg" src="https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png">';
            }
 
+           $conection = conect_mysqli();
+
+           $result = mysqli_query($conection,"SELECT id, title, description, image_path FROM product");
+           $client = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+           //var_dump($client);
+
+           $idDB = Array();
+           $titleDB = Array();
+           $descriptionDB = Array();
+           $image_pathDB = Array();
+
+           for ($a=0;$a<4;$a++) {
+               $idDB [$a] = $client[$a]['id'];
+               $titleDB [$a] = $client[$a]['title'];
+               $descriptionDB [$a] = $client[$a]['description'];
+               $image_pathDB [$a] = $client[$a]['image_path'];
+           }
+
+           //echo ($titleDB [3]);
+
+           mysqli_close($conection);
 
         class submit {
             public $nameSubmit;
@@ -546,8 +564,9 @@
                                     $('#chars').text(length);
                                 });
                             </script>
+                            </div>
                         </div>
-                    </div>
+                    <div class="g-recaptcha" data-sitekey="6LcDk2EaAAAAAEGEMcrGdqs4xFiBAd0Ch8mazf5A"></div>
 
                     <div class="modal-footer">
                         <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -589,7 +608,7 @@
                             <label for="emailSubmit" class="col-form-label">Email address:</label>
                             <input type="text" placeholder="example@example.com" class="form-control" name="emailSubmit" id="emailSubmit" required></input>
                         </div>
-                        <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+                        <div class="g-recaptcha" data-sitekey="6LcDk2EaAAAAAEGEMcrGdqs4xFiBAd0Ch8mazf5A"></div>
                         <br/>
                         <div>
                             <input type="file" name="fileToUpload" id="fileToUpload">
@@ -635,7 +654,7 @@
             <thead>
             <tr style="display:flex; width:100%; margin-top: 2%">
                 <th scope="row"; style="width: 600px; border-top: none; border-bottom: none"><h3 font-size: medium id="name5"><?php echo $nameDB[0] ?></h3></th>
-                <td class="starSingleRating" id="rating5"><?php echo $labelRatingDB[0] ?></td>
+                <td class="starSingleRating"><?php echo $labelRatingDB[0] ?></td>
             </tr>
             </thead>
             <tbody>
@@ -656,7 +675,7 @@
             <thead>
             <tr style="display:flex; width:100%; margin-top: 2%">
                 <th scope="row"; style="width: 600px; border-top: none; border-bottom: none"><h3 font-size: medium id="name5"><?php echo $nameDB[1] ?></h3></th>
-                <td class="starSingleRating" id="rating5"><?php echo $labelRatingDB[1] ?></td>
+                <td class="starSingleRating"><?php echo $labelRatingDB[1] ?></td>
             </tr>
             </thead>
             <tbody>
@@ -677,7 +696,7 @@
             <thead>
             <tr style="display:flex; width:100%; margin-top: 2%">
                 <th scope="row"; style="width: 600px; border-top: none; border-bottom: none"><h3 font-size: medium id="name5"><?php echo $nameDB[2] ?></h3></th>
-                <td class="starSingleRating" id="rating5"><?php echo $labelRatingDB[2] ?></td>
+                <td class="starSingleRating"><?php echo $labelRatingDB[2] ?></td>
             </tr>
             </thead>
             <tbody>
@@ -698,7 +717,7 @@
             <thead>
             <tr style="display:flex; width:100%; margin-top: 2%">
                 <th scope="row"; style="width: 600px; border-top: none; border-bottom: none"><h3 font-size: medium id="name5"><?php echo $nameDB[3] ?></h3></th>
-                <td class="starSingleRating" id="rating5"><?php echo $labelRatingDB[3] ?></td>
+                <td class="starSingleRating"><?php echo $labelRatingDB[3] ?></td>
             </tr>
             </thead>
             <tbody>
@@ -719,7 +738,7 @@
             <thead>
                 <tr style="display:flex; width:100%; margin-top: 2%">
                     <th scope="row"; style="width: 600px; border-top: none; border-bottom: none"><h3 font-size: medium id="name5"><?php echo $nameDB[4] ?></h3></th>
-                    <td class="starSingleRating" id="rating5"><?php echo $labelRatingDB[4] ?></td>
+                    <td class="starSingleRating"><?php echo $labelRatingDB[4] ?></td>
                 </tr>
             </thead>
             <tbody>
@@ -734,7 +753,29 @@
     </div>
 
 </div>
-
+<div class="container" style="margin-left: 150px; margin-top: 50px">
+    <h1>Products</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image path</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($client as $client): ?>
+        <tr>
+            <td><a href="PROYECT%202.1.php?clientId=<?php echo $client['id'] ?>"><?php echo $client['id'] ?></a></td>
+            <td><?php echo $client['title'] ?></td>
+            <td><?php echo $client['description'] ?></td>
+            <td><?php echo $client['image_path'] ?></td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
 </body>
 
